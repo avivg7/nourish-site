@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ויקי - דיאטנית קלינית מוסמכת | ייעוץ תזונתי אישי והדרכות קבוצתיות">
+    <title>ויקי - דיאטנית קלינית מוסמכת</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- תפריט נגישות -->
+    <div id="accessibility-menu" class="accessibility-menu" role="region" aria-label="תפריט נגישות">
+        <button id="accessibility-toggle" class="accessibility-toggle" aria-label="פתח תפריט נגישות" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <!-- סמל נגישות סטנדרטי - אדם בעיגול -->
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                <circle cx="12" cy="8" r="2" fill="white"/>
+            </svg>
+            <span>נגישות</span>
+        </button>
+        <div id="accessibility-options" class="accessibility-options" aria-hidden="true">
+            <h2>אפשרויות נגישות</h2>
+            <button class="accessibility-btn" data-action="increase-font" aria-label="הגדל גופן">
+                <span class="icon">A+</span>
+                <span>הגדל גופן</span>
+            </button>
+            <button class="accessibility-btn" data-action="decrease-font" aria-label="הקטן גופן">
+                <span class="icon">A-</span>
+                <span>הקטן גופן</span>
+            </button>
+            <button class="accessibility-btn" data-action="high-contrast" aria-label="ניגודיות גבוהה">
+                <span class="icon">◐</span>
+                <span>ניגודיות גבוהה</span>
+            </button>
+            <button class="accessibility-btn" data-action="reset" aria-label="אפס הגדרות">
+                <span class="icon">↻</span>
+                <span>אפס הגדרות</span>
+            </button>
+            <a href="accessibility-statement.html" class="accessibility-link">הצהרת נגישות</a>
+        </div>
+    </div>
+
+    <!-- כפתור וואטסאפ צף -->
+    <a href="https://wa.me/972542141321?text=היי%20ויקטוריה,%20אשמח%20לשמוע%20עוד%20על%20השירותים%20שלך"
+       class="whatsapp-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="פנה אלינו בוואטסאפ">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
+            <path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/>
+        </svg>
+    </a>
+
+    <!-- כפתור טלפון צף -->
+    <a href="tel:+972542141321"
+       class="phone-float"
+       aria-label="התקשר אלינו">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+            <path d="M25.36 20.12l-3.52-1.52c-.48-.2-1.04-.08-1.4.32l-1.56 1.56c-2.84-1.44-5.16-3.76-6.6-6.6l1.56-1.56c.4-.36.52-.92.32-1.4l-1.52-3.52c-.24-.56-.84-.88-1.44-.76l-3.2.64c-.6.12-1.04.64-1.04 1.24C6.96 18.28 13.72 25.04 22.48 25.04c.6 0 1.12-.44 1.24-1.04l.64-3.2c.12-.6-.2-1.2-.76-1.44-.16-.08-.16-.08-.24-.24z"/>
+        </svg>
+    </a>
+
+    <!-- תפריט ניווט -->
+    <nav class="navbar" role="navigation" aria-label="תפריט ראשי">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo" aria-label="דף הבית - ויקי דיאטנית קלינית">
+                    <img src="images/logo.png" alt="ויקי - דיאטנית קלינית" class="logo-image">
+                </a>
+                <button class="mobile-menu-toggle" aria-label="פתח תפריט" aria-expanded="false">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links" role="menubar">
+                    <li role="none"><a href="#home" role="menuitem">דף הבית</a></li>
+                    <li role="none"><a href="#about" role="menuitem">אודות</a></li>
+                    <li role="none"><a href="#services" role="menuitem">שירותים</a></li>
+                    <li role="none"><a href="#contact" role="menuitem">יצירת קשר</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" role="banner">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">ויקי - דיאטנית קלינית מוסמכת</h1>
+                <p class="hero-subtitle">ליווי תזונתי אישי ומקצועי למען בריאותך ואיכות חייך</p>
+                <a href="#contact" class="cta-button">בואו נתחיל במסע שלכם</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/profile.jpg" alt="ויקי - דיאטנית קלינית" width="400" height="400">
+                </div>
+                <div class="about-text">
+                    <h2>היכרות</h2>
+                    <p>
+    שמי <strong>ויקטוריה גרמן</strong>, דיאטנית קלינית, ואני מלווה נשים, מבוגרים ומתבגרים
+    בתהליך של בניית אורח חיים בריא ומאוזן.
+  </p>
+
+  <p>
+    אני מכירה מקרוב את האתגרים של שגרה עמוסה, עומס נפשי וחוסר זמן – ואת הקושי לשמור על אכילה
+    מסודרת בתוך כל זה. לעיתים זו אכילה רגשית שמופיעה ברגעים לא צפויים, לעיתים תחושת בלבול סביב
+    מה נכון לאכול, ולעיתים פשוט הרצון לדייק את הבחירות ולהכניס יותר תנועה וקשב לגוף ביום־יום.
+  </p>
+
+  <p>
+    הגישה שלי מבוססת על <strong>ליווי תזונתי אישי</strong>, מותאם לצרכים, ליעדים ולאורח החיים שלך.
+    הליווי נשען על ידע מחקרי עדכני ומשלב כלים פרקטיים לשמירה על בריאות, אנרגיה ואיזון – כולל ירידה
+    במשקל במידת הצורך, ובקצב שמתאים לך.
+  </p>
+
+  <p>
+    אני מאמינה ששינוי אמיתי ועמוק לא נוצר מדיאטות קיצוניות או חוקים נוקשים, אלא מצעדים קטנים,
+    עקביים, ויחסים בריאים וחיוביים עם אוכל ועם הגוף.
+  </p>
+                    <div class="credentials">
+                        <div class="credential-item">
+                            <span class="credential-icon">🎓</span>
+                            <span>תואר ראשון B.Sc במדעי התזונה</span>
+                        </div>
+                        <div class="credential-item">
+                            <span class="credential-icon">📜</span>
+                            <span>בעלת רישיון לעיסוק כדיאטנית קלינית - משרד הבריאות</span>
+                        </div>
+                        <div class="credential-item">
+                            <span class="credential-icon">💼</span>
+                            <span>בעלת ניסיון עשיר בליווי קליני וירידה במשקל</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">השירותים שלי</h2>
+            <p class="section-subtitle">ליווי מקצועי ואישי המותאם במיוחד עבורכם</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>מפגש בזום לבניית תפריט</h3>
+                    <p>מפגש אישי ומעמיק בזום שבו נבנה יחד תפריט תזונתי מותאם אישית לצרכים, להעדפות ולמטרות שלכם.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path>
+                        </svg>
+                    </div>
+                    <h3>מפגשי מעקב מותאמים</h3>
+                    <p>מפגשי המשך תקופתיים למעקב אחר ההתקדמות, עדכון התפריט והתאמות בהתאם לשינויים והצרכים שלכם.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path>
+                        </svg>
+                    </div>
+                    <h3>קשר יומיומי בוואטסאפ</h3>
+                    <p>זמינה עבורכם לשאלות, הכוונה ועידוד לאורך כל הדרך. תמיכה שוטפת שמבטיחה שאתם לא לבד במסע.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 010 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3>הדרכת קבוצות</h3>
+                    <p>הרצאות והדרכות קבוצתיות בנושאי תזונה לארגונים, מקומות עבודה וקהילות. למידה משותפת ומעשירה.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-content">
+                <h2>בואו נתחיל</h2>
+                <p>מוזמנים ליצור קשר ולקבוע פגישת ייעוץ ראשונית. אשמח להכיר אתכם ולהתחיל יחד במסע לבריאות טובה יותר.</p>
+                <a href="https://wa.me/972542141321?text=היי%20ויקי,%20אשמח%20לקבוע%20פגישת%20ייעוץ%20ראשונית"
+                   class="contact-whatsapp-btn"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.118.549 4.111 1.521 5.839L.05 23.886l6.138-1.61A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.833 0-3.576-.496-5.067-1.359l-.363-.216-3.768.988 1.005-3.672-.237-.375A9.932 9.932 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                        <path d="M17.511 14.604c-.299-.15-1.725-.851-1.992-.948-.267-.099-.462-.15-.657.15-.195.299-.756.948-.927 1.143-.171.195-.342.219-.633.072-.299-.15-1.23-.453-2.343-1.446-.867-.774-1.452-1.731-1.623-2.022-.171-.299-.018-.45.129-.594.132-.132.291-.342.438-.513.147-.171.195-.291.291-.486.099-.195.051-.366-.024-.513s-.657-1.584-.9-2.169c-.237-.57-.477-.492-.657-.501-.171-.009-.366-.009-.561-.009s-.513.072-.78.366c-.267.291-1.02.996-1.02 2.433s1.044 2.822 1.191 3.017c.147.195 2.061 3.147 4.995 4.416.699.303 1.245.483 1.671.618.702.222 1.341.191 1.845.117.564-.084 1.725-.705 1.968-1.386.243-.681.243-1.266.171-1.386-.072-.12-.267-.195-.561-.342z"/>
+                    </svg>
+                    <span>צרו קשר בוואטסאפ</span>
+                </a>
+                <div class="contact-info">
+                    <p>או התקשרו: <a href="tel:+972542141321" dir="ltr">054-214-1321</a></p>
+                    <p>אימייל: <a href="mailto:nourish.viktoria@gmail.com">Nourish.viktoria@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ויקי - תזונאית קלינית</h3>
+                    <p>ליווי תזונתי אישי ומקצועי</p>
+                </div>
+                <div class="footer-section">
+                    <h3>קישורים</h3>
+                    <ul>
+                        <li><a href="#home">דף הבית</a></li>
+                        <li><a href="#about">אודות</a></li>
+                        <li><a href="#services">שירותים</a></li>
+                        <li><a href="accessibility-statement.html">הצהרת נגישות</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>יצירת קשר</h3>
+                    <p>טלפון: <a href="tel:+972542141321" dir="ltr">054-214-1321</a></p>
+                    <p>אימייל: <a href="mailto:nourish.viktoria@gmail.com">Nourish.viktoria@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ויקי - תזונאית קלינית. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

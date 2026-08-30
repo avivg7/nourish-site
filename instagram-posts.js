@@ -11,7 +11,12 @@
    ========================================================================== */
 
 const INSTAGRAM_POSTS = [
-    // 'https://www.instagram.com/p/XXXXXXXXXXX/',
+    'https://www.instagram.com/p/DZAkrMzsZEa/',
+    'https://www.instagram.com/p/DblsPT1Msmq/',
+    'https://www.instagram.com/p/DbQ4s0wCoBg/',
+    'https://www.instagram.com/p/DX7bDIHMMPi/',
+    'https://www.instagram.com/p/DWlWLdODCJy/',
+    'https://www.instagram.com/p/DWEcrmNjN4Q/',
 ];
 
 (function () {

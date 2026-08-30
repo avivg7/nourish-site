@@ -500,7 +500,7 @@ p  { text-wrap: pretty; }
     background: var(--cream);
 }
 .contact-list svg { width: 22px; height: 22px; color: var(--beet-deep); flex: none; }
-.contact-list a { font-weight: 600; color: var(--ink); text-decoration: none; }
+.contact-list a { display: inline-block; padding-block: 0.6rem; font-weight: 600; color: var(--ink); text-decoration: none; }
 .contact-list a:hover { color: var(--beet-deep); text-decoration: underline; }
 .contact-list small { display: block; color: var(--sage-deep); font-size: 0.85rem; }
 
@@ -533,7 +533,8 @@ p  { text-wrap: pretty; }
     border-radius: 12px;
     margin-bottom: 1rem;
 }
-.footer-links ul, .footer-contact ul { list-style: none; display: grid; gap: 0.5rem; }
+.footer-links ul, .footer-contact ul { list-style: none; display: grid; gap: 0.1rem; }
+.footer-links a, .footer-contact a { display: inline-block; padding-block: 0.6rem; }
 .footer-contact li { display: flex; align-items: center; gap: 0.6rem; }
 .footer-contact svg { width: 18px; height: 18px; flex: none; color: #C9D3C6; }
 .social-links { display: flex; gap: 0.6rem; margin-top: 1rem; }
@@ -557,6 +558,7 @@ p  { text-wrap: pretty; }
     font-size: 0.9rem;
 }
 .footer-bottom p, .footer-bottom a { color: #C9D3C6; }
+.footer-bottom a { display: inline-block; padding-block: 0.55rem; }
 
 /* ---------- כפתורים צפים ---------- */
 .float-stack {
@@ -652,6 +654,7 @@ p  { text-wrap: pretty; }
     display: block;
     margin-top: 0.5rem;
     padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
     border-top: 1px solid var(--line);
     text-align: center;
     font-size: 0.92rem;

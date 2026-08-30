@@ -25,7 +25,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
@@ -47,6 +47,7 @@
 </head>
 <body>
     <a class="skip-link" href="#main">דילוג לתוכן הראשי</a>
+    <div class="progress" aria-hidden="true"></div>
 
     <!-- כותרת עליונה -->
     <header class="site-header">
@@ -77,10 +78,16 @@
         <section class="hero" aria-labelledby="hero-title">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <p class="eyebrow">ויקטוריה גרמן · דיאטנית קלינית מוסמכת</p>
-                    <h1 id="hero-title">תזונה שמתאימה לחיים שלך, <em>לא להפך.</em></h1>
-                    <p class="lead">ליווי תזונתי אישי לנשים, מבוגרים ומתבגרים – צעדים קטנים ועקביים, בלי דיאטות קיצוניות ובלי חוקים נוקשים.</p>
-                    <div class="hero-actions">
+                    <svg class="beet-art" viewBox="0 0 64 64" aria-hidden="true">
+                        <path class="leaf" pathLength="1" d="M29 27c-2.5-9 .5-16.5 6.5-21.5 2.5 6.5 1 14-4.5 21"/>
+                        <path class="leaf leaf-2" pathLength="1" d="M35.5 27.5c2-8.5 8-14 15.5-15-1 7.5-6.5 13.5-13.5 15.5"/>
+                        <path pathLength="1" d="M32 27c-10.5 0-18.5 7-18.5 15.5 0 7.5 5 12.5 11 16.5L32 63.5l7.5-4.5c6-4 11-9 11-16.5C50.5 34 42.5 27 32 27z"/>
+                        <path pathLength="1" d="M22.5 38c1.5-4 5-6.5 9-7.5"/>
+                    </svg>
+                    <p class="eyebrow hero-anim">ויקטוריה גרמן · דיאטנית קלינית מוסמכת</p>
+                    <h1 id="hero-title" class="hero-anim">תזונה שמתאימה לחיים שלך, <em>לא להפך.</em></h1>
+                    <p class="lead hero-anim">ליווי תזונתי אישי לנשים, מבוגרים ומתבגרים – צעדים קטנים ועקביים, בלי דיאטות קיצוניות ובלי חוקים נוקשים.</p>
+                    <div class="hero-actions hero-anim">
                         <a href="https://wa.me/972542141321?text=%D7%94%D7%99%D7%99%20%D7%95%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA"
                            class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener noreferrer">
                             <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/><path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/></svg>
@@ -88,18 +95,18 @@
                         </a>
                         <a href="#process" class="btn btn-ghost btn-lg">איך זה עובד</a>
                     </div>
-                    <ul class="trust-row" aria-label="הסמכות">
+                    <ul class="trust-row hero-anim" aria-label="הסמכות">
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>B.Sc במדעי התזונה</li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>רישיון משרד הבריאות</li>
                         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>בזום או בקליניקה</li>
                     </ul>
                 </div>
                 <div class="hero-visual">
-                    <div class="blob-bg" aria-hidden="true"></div>
+                    <div class="blob-bg hero-anim" aria-hidden="true"></div>
                     <picture>
                         <source type="image/webp" srcset="images/profile-480.webp 480w, images/profile-900.webp 900w" sizes="(max-width: 1023px) 340px, 440px">
                         <img src="images/profile-900.jpg" srcset="images/profile-480.jpg 480w, images/profile-900.jpg 900w" sizes="(max-width: 1023px) 340px, 440px"
-                             width="900" height="1200" alt="ויקטוריה גרמן מחייכת ומחזיקה כוס קפה ירוקה" class="hero-photo" fetchpriority="high">
+                             width="900" height="1200" alt="ויקטוריה גרמן מחייכת ומחזיקה כוס קפה ירוקה" class="hero-photo hero-anim" fetchpriority="high">
                     </picture>
                 </div>
             </div>
@@ -167,6 +174,50 @@
             </div>
         </section>
 
+        <!-- מה מתאים לי? -->
+        <section id="match" class="section" aria-labelledby="match-title">
+            <div class="container">
+                <div class="section-head reveal">
+                    <p class="eyebrow">מה מתאים לי?</p>
+                    <h2 id="match-title" class="section-title">מה הכי מעסיק אותך עכשיו?</h2>
+                    <p>בחרו נושא אחד – ותראו איך נראה ליווי שנבנה סביבו. אפשר לשנות דעה, זה רק כדי להתחיל לדבר.</p>
+                </div>
+                <div class="match-grid">
+                    <div class="match-options reveal" role="radiogroup" aria-label="בחירת נושא">
+                        <button class="match-option" type="button" role="radio" aria-checked="true" data-goal="weight">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>ירידה במשקל<span class="hint">שינוי שמחזיק, בלי דיאטת כאסח</span></span>
+                        </button>
+                        <button class="match-option" type="button" role="radio" aria-checked="false" data-goal="emotional">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>אכילה רגשית<span class="hint">לזהות מה קורה לפני שהיד נשלחת למטבח</span></span>
+                        </button>
+                        <button class="match-option" type="button" role="radio" aria-checked="false" data-goal="routine">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>אנרגיה ושגרה עמוסה<span class="hint">לאכול מסודר גם כשהיום לא מסודר</span></span>
+                        </button>
+                        <button class="match-option" type="button" role="radio" aria-checked="false" data-goal="teen">
+                            <span class="dot" aria-hidden="true"></span>
+                            <span>ליווי מתבגר/ת<span class="hint">יחס בריא לאוכל ולגוף, יחד עם ההורים</span></span>
+                        </button>
+                    </div>
+                    <div class="match-panel reveal" data-delay="1">
+                        <div class="match-content" id="match-content" aria-live="polite">
+                            <p class="eyebrow">ירידה במשקל</p>
+                            <h3>ירידה במשקל שנשארת</h3>
+                            <p>לא עוד "מתחילים ביום ראשון". תוכנית שמתאימה לשגרה האמיתית שלך, מדדים שנמדדים לאורך זמן, ומעקב צמוד שמחזיק גם בשבועות הפחות טובים.</p>
+                            <ul>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>אבחון ומדדים במפגש הראשון, ותוכנית שנבנית מהם</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>תפריט גמיש – בלי לספור קלוריות, עם מקום לאוכל שאוהבים</span></li>
+                                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>מפגשי מעקב ומענה בוואטסאפ בין לבין</span></li>
+                            </ul>
+                            <a href="https://wa.me/972542141321?text=%D7%94%D7%99%D7%99%20%D7%95%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%9C%D7%99%D7%95%D7%95%D7%99%20%D7%9C%D7%99%D7%A8%D7%99%D7%93%D7%94%20%D7%91%D7%9E%D7%A9%D7%A7%D7%9C" class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">לדבר על זה בוואטסאפ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- איך זה עובד -->
         <section id="process" class="section" aria-labelledby="process-title">
             <div class="container">
@@ -195,6 +246,42 @@
                 <div class="step-note reveal">
                     <p>מוכנים לצעד הראשון? השיחה הראשונה עליי.</p>
                     <a href="#contact" class="btn btn-primary">בואו נדבר</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- שאלות נפוצות -->
+        <section id="faq" class="section paper" aria-labelledby="faq-title">
+            <div class="container">
+                <div class="section-head center reveal">
+                    <p class="eyebrow">שאלות נפוצות</p>
+                    <h2 id="faq-title" class="section-title">מה ששואלים אותי לפני שמתחילים</h2>
+                </div>
+                <div class="faq reveal">
+                    <div class="faq-item">
+                        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">כמה עולה ליווי?<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button></h3>
+                        <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>המחיר תלוי במסלול: מפגש בודד או חבילת מעקב. בשיחת ההיכרות (ללא עלות) נבין יחד מה מתאים, ואשלח הצעה מסודרת. בלי הפתעות ובלי התחייבות מראש.</p></div></div>
+                    </div>
+                    <div class="faq-item">
+                        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">בזום או בקליניקה?<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button></h3>
+                        <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p>שניהם. יש מי שמעדיפים להגיע, ויש מי שמשלבים – מפגש ראשון פנים אל פנים והמשך בזום. הליווי עובד טוב בשתי הצורות.</p></div></div>
+                    </div>
+                    <div class="faq-item">
+                        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">כמה זמן לוקח לראות תוצאות?<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button></h3>
+                        <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p>שינוי בהרגלים ובתחושה מרגישים בדרך כלל תוך שבועיים-שלושה. תוצאות במשקל ובמדדים נבנות לאורך חודשים – בקצב שאפשר לשמור עליו, לא בקצב שנשבר.</p></div></div>
+                    </div>
+                    <div class="faq-item">
+                        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">צריך לספור קלוריות?<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button></h3>
+                        <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><p>לא. עובדים על מבנה ארוחות, כמויות שמתאימות לך ותחושות רעב ושובע. רישום אכילה נכנס רק אם הוא עוזר, ולתקופה קצרה.</p></div></div>
+                    </div>
+                    <div class="faq-item">
+                        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">מה קורה בין המפגשים?<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button></h3>
+                        <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><p>לרוכשי חבילת מעקב יש מענה בוואטסאפ – לשאלה במסעדה, להתלבטות בסופר, או לרגע שבו צריך מישהו לצידך. זה חלק מהליווי, לא תוספת.</p></div></div>
+                    </div>
+                    <div class="faq-item">
+                        <h3><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">הליווי מתאים גם למתבגרים?<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></button></h3>
+                        <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div><p>כן. עובדים יחד עם המתבגר/ת וההורים, בגישה שמתאימה לגיל: בלי דיאטות, בלי ספירות, עם דגש על יחס בריא לאוכל ולגוף.</p></div></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -255,6 +342,7 @@
                         <li><a href="#about">היכרות</a></li>
                         <li><a href="#services">שירותים</a></li>
                         <li><a href="#process">איך זה עובד</a></li>
+                        <li><a href="#faq">שאלות נפוצות</a></li>
                         <li><a href="recipes.html">מתכונים</a></li>
                         <li><a href="blog.html">בלוג נושם</a></li>
                     </ul>
@@ -275,6 +363,17 @@
     </footer>
 
     <!-- כפתורים צפים -->
+    <!-- סרגל יצירת קשר דביק (מובייל) -->
+    <div class="cta-bar" aria-label="יצירת קשר מהירה">
+        <a href="https://wa.me/972542141321?text=%D7%94%D7%99%D7%99%20%D7%95%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/><path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/></svg>
+            <span>שיחת היכרות בוואטסאפ</span>
+        </a>
+        <a href="tel:+972542141321" class="btn-phone" aria-label="התקשרו אלינו">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+    </div>
+
     <div class="float-stack">
         <a href="https://wa.me/972542141321?text=%D7%94%D7%99%D7%99%20%D7%95%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%9D"
            class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="שליחת הודעה בוואטסאפ">
@@ -302,6 +401,8 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
     <script src="script.js" defer></script>
 </body>
 </html>

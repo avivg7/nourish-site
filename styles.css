@@ -27,7 +27,7 @@
     --whatsapp-hover: #0B655B;
 
     /* טיפוגרפיה */
-    --font-display: 'Frank Ruhl Libre', 'David', 'Times New Roman', serif;
+    --font-display: 'Heebo', 'Arial Hebrew', Arial, sans-serif;
     --font-body: 'Heebo', 'Arial Hebrew', Arial, sans-serif;
     --font-size-scale: 1;
 
@@ -59,6 +59,7 @@
 * { margin: 0; }
 
 html {
+    font-family: var(--font-body);
     font-size: calc(100% * var(--font-size-scale));
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--header-h) + 1rem);
@@ -102,14 +103,14 @@ a:hover { color: var(--beet); }
 /* ---------- טיפוגרפיה ---------- */
 h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1.2;
+    font-weight: 800;
+    line-height: 1.18;
     color: var(--ink);
     text-wrap: balance;
 }
-h1 { font-size: clamp(2.25rem, 1.4rem + 3.6vw, 3.75rem); letter-spacing: -0.005em; }
+h1 { font-size: clamp(2.25rem, 1.4rem + 3.4vw, 3.6rem); letter-spacing: -0.01em; }
 h2 { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.6rem); }
-h3 { font-size: 1.3rem; line-height: 1.3; }
+h3 { font-size: 1.25rem; line-height: 1.3; font-weight: 700; }
 p  { text-wrap: pretty; }
 
 .eyebrow {
@@ -316,16 +317,17 @@ p  { text-wrap: pretty; }
     position: relative;
     z-index: 1;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;            /* יחס התמונה המקורי – מוצגת במלואה */
     object-fit: cover;
-    object-position: 50% 18%;
-    border-radius: 58% 42% 55% 45% / 48% 52% 48% 52%;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
+    will-change: transform;
 }
 .blob-bg {
     position: absolute;
-    inset: -6% -10% -4% -6%;
+    inset: -7% -12% -5% -9%;
     background: var(--sage-tint);
+    will-change: transform;
     border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
     transform: rotate(-6deg);
 }
@@ -349,8 +351,9 @@ p  { text-wrap: pretty; }
     border-radius: var(--radius);
     padding-top: 2.9rem;
     font-family: var(--font-display);
-    font-size: 1.35rem;
-    line-height: 1.5;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.6;
     color: var(--ink);
     box-shadow: var(--shadow-sm);
 }
@@ -359,8 +362,9 @@ p  { text-wrap: pretty; }
     position: absolute;
     top: 0.35rem;
     inset-inline-start: 1.25rem;
-    font-size: 4.5rem;
+    font-size: 4rem;
     line-height: 1;
+    font-weight: 800;
     color: var(--beet);
     opacity: 0.85;
 }
@@ -429,6 +433,7 @@ p  { text-wrap: pretty; }
     width: 48px; height: 48px;
     border-radius: 50%;
     background: var(--beet);
+    transition: background-color 400ms var(--ease-out), box-shadow 400ms var(--ease-out), transform 400ms var(--ease-out);
     color: #fff;
     font-family: var(--font-display);
     font-weight: 700;
@@ -437,6 +442,8 @@ p  { text-wrap: pretty; }
     place-items: center;
     box-shadow: 0 6px 16px var(--beet-glow);
 }
+.js .step-num { background: var(--sage); box-shadow: none; }
+.js .step.is-active .step-num { background: var(--beet); box-shadow: 0 6px 16px var(--beet-glow); transform: scale(1.06); }
 .step h3 { margin-bottom: 0.4rem; }
 .step p { color: var(--ink-soft); font-size: 1rem; }
 .step-note {
@@ -685,7 +692,9 @@ p  { text-wrap: pretty; }
     overflow: hidden;
     transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
 }
-.recipe-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.recipe-card:hover { box-shadow: var(--shadow-md); }
+.recipe-card.is-hidden { display: none; }
+.recipe-card.is-tilting { transition: box-shadow var(--dur) var(--ease-out); }
 .recipe-art {
     position: relative;
     aspect-ratio: 16 / 9;
@@ -815,21 +824,58 @@ p  { text-wrap: pretty; }
 .modal-section h3 { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem; }
 .modal-section h3::before { content: ''; width: 4px; height: 1.2em; border-radius: 2px; background: var(--beet); }
 .ingredients, .instructions { list-style: none; display: grid; gap: 0.5rem; }
-.ingredients li {
+.ingredients li { background: var(--cream); border-radius: var(--radius-sm); }
+.ingredients label {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     padding: 0.7rem 0.9rem;
-    background: var(--cream);
-    border-radius: var(--radius-sm);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
-.ingredients li::before {
-    content: '';
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--sage-deep);
+.ingredients input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px; height: 22px;
+    margin: 0;
+    border: 2px solid var(--sage);
+    border-radius: 7px;
+    background: var(--paper);
     flex: none;
+    display: grid;
+    place-items: center;
+    transition: background-color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
 }
+.ingredients input:checked { background: var(--beet); border-color: var(--beet); }
+.ingredients input:checked::after {
+    content: '';
+    width: 10px; height: 5px;
+    border: 2px solid #fff;
+    border-top: 0; border-right: 0;
+    transform: translateY(-1px) rotate(-45deg);
+}
+.ingredients input:checked + span { text-decoration: line-through; color: var(--ink-soft); }
+.ingredients .qty { color: var(--beet-deep); font-weight: 700; font-variant-numeric: tabular-nums; }
+.modal-section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem 1rem; margin-bottom: 0.9rem; }
+.modal-section-head h3 { margin: 0; }
+.servings { display: inline-flex; align-items: center; gap: 0.35rem; background: var(--cream); border-radius: 999px; padding: 0.25rem; }
+.servings button {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.servings button:hover { background: var(--beet); color: #fff; }
+.servings button:active { transform: scale(0.94); }
+.servings button:disabled { opacity: 0.4; cursor: not-allowed; }
+.servings output { min-width: 6.5ch; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
 .instructions { counter-reset: steps; }
 .instructions li {
     counter-increment: steps;
@@ -934,6 +980,189 @@ p  { text-wrap: pretty; }
 .contact-box ul { list-style: none; padding: 0; }
 .update-date { font-size: 0.9rem; color: var(--sage-deep); margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
 
+/* ==========================================================================
+   שכבת אינטראקציה
+   ========================================================================== */
+
+/* ---------- פס התקדמות גלילה ---------- */
+.progress {
+    position: fixed;
+    top: 0;
+    inset-inline: 0;
+    height: 3px;
+    background: var(--beet);
+    transform: scaleX(0);
+    transform-origin: right center;
+    z-index: calc(var(--z-header) + 1);
+    pointer-events: none;
+}
+
+/* ---------- מעברי עמודים (View Transitions) ---------- */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: 140ms ease-in both vt-out; }
+::view-transition-new(root) { animation: 260ms var(--ease-out) both vt-in; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(8px); } }
+
+/* ---------- Hero: כניסה מתוזמנת (GSAP) ---------- */
+.has-gsap .hero-anim { opacity: 0; }
+.hero-copy h1 .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0.12em 0.02em; margin: -0.12em -0.02em; }
+.hero-copy h1 .wi { display: inline-block; will-change: transform; }
+
+/* איור סלק מצויר בקו – חתימת המותג */
+.beet-art { width: 72px; height: 72px; color: var(--beet); margin-bottom: 0.75rem; overflow: visible; }
+.beet-art path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 1.5s var(--ease-out) 0.25s forwards;
+}
+.beet-art .leaf {
+    color: var(--sage-deep);
+    transform-origin: 32px 30px;
+    animation: draw 1.3s var(--ease-out) 0.7s forwards, sway 6s ease-in-out 2.4s infinite;
+}
+.beet-art .leaf-2 { animation-delay: 0.95s, 3s; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-5deg); } }
+
+/* ---------- "מה מתאים לי?" ---------- */
+.match-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 2.5rem;
+    align-items: start;
+}
+.match-options { display: grid; gap: 0.6rem; }
+.match-option {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    width: 100%;
+    min-height: 60px;
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius);
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+    text-align: right;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out),
+                transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.match-option:hover { border-color: var(--beet); transform: translateY(-1px); }
+.match-option[aria-checked="true"] { border-color: var(--beet); background: var(--beet-tint); box-shadow: 0 6px 18px var(--beet-glow); }
+.match-option .dot {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--sage);
+    flex: none;
+    display: grid;
+    place-items: center;
+    transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
+}
+.match-option[aria-checked="true"] .dot { border-color: var(--beet); background: var(--beet); }
+.match-option[aria-checked="true"] .dot::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+.match-option .hint { display: block; font-weight: 400; font-size: 0.9rem; color: var(--ink-soft); }
+
+.match-panel {
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+    min-height: 340px;
+}
+.match-panel::before {
+    content: '';
+    position: absolute;
+    inset-inline-end: -70px;
+    top: -70px;
+    width: 220px; height: 220px;
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    background: var(--sage-tint);
+}
+.match-panel > * { position: relative; }
+.match-panel .eyebrow { margin-bottom: 0.5rem; }
+.match-panel h3 { font-size: 1.5rem; margin-bottom: 0.6rem; }
+.match-panel p { color: var(--ink-soft); margin-bottom: 1.1rem; }
+.match-panel ul { list-style: none; display: grid; gap: 0.5rem; margin-bottom: 1.5rem; }
+.match-panel li { display: flex; align-items: flex-start; gap: 0.6rem; }
+.match-panel li svg { width: 20px; height: 20px; color: var(--beet); flex: none; margin-top: 0.25rem; }
+.match-content { transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); }
+.match-content.is-switching { opacity: 0; transform: translateY(8px); }
+
+/* ---------- שאלות נפוצות ---------- */
+.faq { max-width: 760px; margin-inline: auto; }
+.faq-item { border-top: 1px solid rgba(42, 31, 29, 0.16); }
+.faq-item h3 { margin: 0; font-size: 1rem; }
+.faq-item:last-child { border-bottom: 1px solid rgba(42, 31, 29, 0.16); }
+.faq-q {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--ink);
+    transition: color var(--dur) var(--ease-out);
+}
+.faq-q:hover { color: var(--beet-deep); }
+.faq-q .chev {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--sage-tint);
+    color: var(--sage-deep);
+    display: grid;
+    place-items: center;
+    flex: none;
+    transition: transform 300ms var(--ease-out), background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+.faq-q .chev svg { width: 18px; height: 18px; }
+.faq-q[aria-expanded="true"] .chev { transform: rotate(180deg); background: var(--beet); color: #fff; }
+.faq-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition: grid-template-rows 320ms var(--ease-out), visibility 0s linear 320ms;
+}
+.faq-a > div { overflow: hidden; }
+.faq-a.is-open { grid-template-rows: 1fr; visibility: visible; transition-delay: 0s, 0s; }
+.faq-a p { color: var(--ink-soft); padding-bottom: 1.25rem; max-width: 62ch; }
+
+/* ---------- סינון מתכונים ---------- */
+.filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
+.filter-btn {
+    min-height: 44px;
+    padding: 0.5rem 1.15rem;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-soft);
+    font-weight: 600;
+    transition: background-color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.filter-btn:hover { border-color: var(--beet); color: var(--beet-deep); transform: translateY(-1px); }
+.filter-btn[aria-pressed="true"] { background: var(--beet); border-color: var(--beet); color: #fff; }
+.recipes-empty { grid-column: 1 / -1; text-align: center; color: var(--ink-soft); padding: 2.5rem 1rem; }
+
+/* ---------- סרגל CTA דביק (מובייל) ---------- */
+.cta-bar { display: none; }
+
+/* ---------- כפתורים מגנטיים / הטיה ---------- */
+.magnetic { will-change: transform; }
+.tilt { transform-style: preserve-3d; will-change: transform; }
+
 /* ---------- אנימציית חשיפה ---------- */
 .js .reveal {
     opacity: 0;
@@ -974,7 +1203,12 @@ body.high-contrast .ingredients li,
 body.high-contrast .instructions li,
 body.high-contrast .nutrition-item,
 body.high-contrast .statement,
+body.high-contrast .match-option,
+body.high-contrast .match-panel,
+body.high-contrast .filter-btn,
+body.high-contrast .cta-bar,
 body.high-contrast .ig-empty { border: 2px solid #000; }
+body.high-contrast .match-panel::before { display: none; }
 body.high-contrast .site-header { background: #fff; border-bottom: 2px solid #000; }
 body.high-contrast .blob-bg, body.high-contrast .contact-card::after,
 body.high-contrast .page-hero::before { display: none; }
@@ -990,6 +1224,9 @@ body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: 
         transition-duration: 0.01ms !important;
     }
     .js .reveal { opacity: 1; transform: none; }
+    .has-gsap .hero-anim { opacity: 1; }
+    .has-gsap .steps::before { transform: none; }
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
 
 /* ---------- רספונסיב ---------- */
@@ -1003,8 +1240,11 @@ body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: 
         top: 24px;
         inset-inline: 24px;
         height: 2px;
-        background: linear-gradient(to left, var(--beet-tint), var(--sage) 50%, var(--beet-tint));
+        background: var(--beet);
+        transform-origin: right center;
+        opacity: 0.55;
     }
+    .has-gsap .steps::before { transform: scaleX(var(--line-progress, 0)); }
 }
 
 @media (max-width: 1023px) {
@@ -1043,6 +1283,7 @@ body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: 
     .hero-copy .eyebrow { justify-content: center; }
 
     .about-grid { grid-template-columns: 1fr; }
+    .match-grid { grid-template-columns: 1fr; }
     .contact-card { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -1054,7 +1295,29 @@ body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: 
     .hero-actions .btn { width: 100%; }
     .services-list { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .float-phone { display: grid; }
+    .beet-art { margin-inline: auto; }
+    .faq-q { font-size: 1rem; }
+    .cta-bar {
+        position: fixed;
+        bottom: 0;
+        inset-inline: 0;
+        z-index: var(--z-float);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.6rem;
+        padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.94);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid var(--line);
+    }
+    .cta-bar .btn-whatsapp { min-height: 48px; font-size: 1.05rem; }
+    .cta-bar .btn-phone { width: 48px; height: 48px; border-radius: 50%; background: var(--beet-tint); color: var(--beet-deep); display: grid; place-items: center; }
+    .cta-bar .btn-phone svg { width: 22px; height: 22px; }
+    body.nav-open .cta-bar { visibility: hidden; }
+    .float-stack { display: none; }
+    .a11y { bottom: calc(66px + env(safe-area-inset-bottom) + 0.75rem); }
+    .site-footer { padding-bottom: 7.5rem; }
     .a11y-toggle span { display: none; }
     .a11y-toggle { width: 52px; padding: 0; justify-content: center; }
     .cta-band { grid-template-columns: 1fr; }

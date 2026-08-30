@@ -20,7 +20,7 @@ const INSTAGRAM_POSTS = [
     const feed = document.getElementById('instagram-feed');
     if (!feed) return;
 
-    const PROFILE_URL = 'https://www.instagram.com/nourish.viktoria/';
+    const PROFILE_URL = 'https://www.instagram.com/nourish_vik/';
     const IG_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>';
 
     function isValidPostUrl(url) {

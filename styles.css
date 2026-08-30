@@ -329,16 +329,6 @@ p  { text-wrap: pretty; }
     border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
     transform: rotate(-6deg);
 }
-.blob-bg::after {
-    content: '';
-    position: absolute;
-    right: -4%;
-    bottom: 6%;
-    width: 22%;
-    aspect-ratio: 1;
-    background: var(--beet-tint);
-    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-}
 
 /* ---------- היכרות ---------- */
 .about-grid {
@@ -670,7 +660,7 @@ p  { text-wrap: pretty; }
 .page-hero .eyebrow { justify-content: center; }
 .page-hero h1 { margin-bottom: 1rem; }
 .page-hero .lead { max-width: 52ch; margin-inline: auto; }
-.page-hero::before, .page-hero::after {
+.page-hero::before {
     content: '';
     position: absolute;
     z-index: -1;
@@ -678,7 +668,6 @@ p  { text-wrap: pretty; }
     pointer-events: none;
 }
 .page-hero::before { width: 320px; height: 320px; background: var(--sage-tint); right: -120px; top: -120px; }
-.page-hero::after  { width: 200px; height: 200px; background: var(--beet-tint); left: -80px; bottom: -100px; }
 
 /* ---------- מתכונים ---------- */
 .recipes-grid {
@@ -988,7 +977,7 @@ body.high-contrast .statement,
 body.high-contrast .ig-empty { border: 2px solid #000; }
 body.high-contrast .site-header { background: #fff; border-bottom: 2px solid #000; }
 body.high-contrast .blob-bg, body.high-contrast .contact-card::after,
-body.high-contrast .page-hero::before, body.high-contrast .page-hero::after { display: none; }
+body.high-contrast .page-hero::before { display: none; }
 body.high-contrast .hero-photo { border: 2px solid #000; }
 body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: #fff; }
 

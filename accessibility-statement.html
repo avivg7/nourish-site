@@ -1,314 +1,231 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="הצהרת נגישות - אתר התזונאית ויקי">
-    <title>הצהרת נגישות - ויקי תזונאית קלינית</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>הצהרת נגישות | ויקטוריה גרמן – דיאטנית קלינית</title>
+    <meta name="description" content="הצהרת הנגישות של אתר ויקטוריה גרמן – דיאטנית קלינית: התאמות הנגישות באתר, תפריט הנגישות ודרכי פנייה.">
+    <link rel="canonical" href="https://nourishvik.com/accessibility-statement.html">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#FBF7F2">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .accessibility-statement {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 2rem 60px;
-            background-color: var(--background-white);
-        }
-
-        .accessibility-statement h1 {
-            color: var(--primary-color);
-            font-size: calc(2.5rem * var(--font-size-scale));
-            margin-bottom: 1rem;
-        }
-
-        .accessibility-statement h2 {
-            color: var(--text-dark);
-            font-size: calc(1.8rem * var(--font-size-scale));
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--secondary-color);
-        }
-
-        .accessibility-statement h3 {
-            color: var(--primary-color);
-            font-size: calc(1.3rem * var(--font-size-scale));
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .accessibility-statement p {
-            color: var(--text-light);
-            font-size: calc(1.05rem * var(--font-size-scale));
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
-
-        .accessibility-statement ul {
-            margin-right: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .accessibility-statement li {
-            color: var(--text-light);
-            font-size: calc(1.05rem * var(--font-size-scale));
-            line-height: 1.8;
-            margin-bottom: 0.8rem;
-        }
-
-        .accessibility-statement strong {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .contact-box {
-            background-color: var(--background-light);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            border-right: 4px solid var(--primary-color);
-        }
-
-        .contact-box h3 {
-            margin-top: 0;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            gap: 12px;
-        }
-
-        .update-date {
-            font-size: calc(0.9rem * var(--font-size-scale));
-            color: var(--text-light);
-            font-style: italic;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--secondary-color);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 </head>
 <body>
-    <!-- תפריט ניווט -->
-    <nav class="navbar" role="navigation" aria-label="תפריט ראשי">
-        <div class="container">
-            <div class="nav-content">
-                <a href="index.html" class="logo" aria-label="דף הבית - ויקי תזונאית קלינית">
-                    <img src="images/logo.png" alt="ויקי - תזונאית קלינית" class="logo-image">
-                </a>
-                <ul class="nav-links" role="menubar">
-                    <li role="none"><a href="index.html#home" role="menuitem">דף הבית</a></li>
-                    <li role="none"><a href="index.html#about" role="menuitem">אודות</a></li>
-                    <li role="none"><a href="index.html#services" role="menuitem">שירותים</a></li>
-                    <li role="none"><a href="recipes.html" role="menuitem">מתכונים</a></li>
-                    <li role="none"><a href="blog.html" role="menuitem">בלוג נושם</a></li>
-                    <li role="none"><a href="index.html#contact" role="menuitem">יצירת קשר</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <a class="skip-link" href="#main">דילוג לתוכן הראשי</a>
 
-    <!-- תוכן ההצהרה -->
-    <main class="accessibility-statement" role="main">
-        <a href="index.html" class="back-link">
-            <span>←</span>
-            <span>חזרה לדף הבית</span>
-        </a>
-
-        <h1>הצהרת נגישות</h1>
-
-        <p>
-            <strong>ויקי - תזונאית קלינית</strong> מחויבת להנגשת האתר שלה לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות.
-            אנו פועלים לשיפור רציף של נגישות האתר ועמידתו בתקנים הנדרשים.
-        </p>
-
-        <h2>מהי נגישות אתרי אינטרנט?</h2>
-        <p>
-            אתר אינטרנט נגיש הוא אתר המאפשר לאנשים עם מוגבלות לגלוש בו באותה רמה של יעילות והנאה כמו גולשים אחרים.
-            זאת באמצעות טכנולוגיות מסייעות ועיצוב אתר מתאים.
-        </p>
-
-        <h2>התאמות הנגישות באתר</h2>
-        <p>האתר הותאם בהתאם לתקן הישראלי (ת"י 5568) ולהנחיות WCAG 2.1 ברמה AA. ההתאמות כוללות, בין היתר:</p>
-
-        <h3>שימוש במקלדת</h3>
-        <ul>
-            <li>ניתן לנווט באתר באמצעות מקלדת בלבד, ללא צורך בעכבר</li>
-            <li>כל הפונקציות זמינות באמצעות מקלדת</li>
-            <li>סדר הטאבים (Tab) באתר הוא לוגי ועוקב אחר מבנה הדף</li>
-            <li>אלמנטים אינטראקטיביים (כפתורים, קישורים) ניתנים למיקוד ברור</li>
-        </ul>
-
-        <h3>תמיכה בטכנולוגיות מסייעות</h3>
-        <ul>
-            <li>האתר תומך בקוראי מסך מובילים כגון NVDA, JAWS ו-VoiceOver</li>
-            <li>השימוש בתגיות ARIA מאפשר הבנה נכונה של המבנה והתוכן</li>
-            <li>כל התמונות כוללות טקסט חלופי (Alt Text) תיאורי</li>
-            <li>כותרות מסומנות בצורה היררכית ברורה (H1, H2, H3...)</li>
-        </ul>
-
-        <h3>תפריט נגישות</h3>
-        <p>האתר כולל תפריט נגישות ייעודי המאפשר:</p>
-        <ul>
-            <li><strong>הגדלת טקסט</strong> - הגדלת גודל הגופן באתר</li>
-            <li><strong>הקטנת טקסט</strong> - הקטנת גודל הגופן באתר</li>
-            <li><strong>ניגודיות גבוהה</strong> - החלפת צבעי האתר לניגודיות מקסימלית</li>
-            <li><strong>איפוס הגדרות</strong> - החזרת כל ההגדרות למצב ברירת המחדל</li>
-        </ul>
-        <p>ההגדרות נשמרות באופן אוטומטי ונטענות בביקור הבא באתר.</p>
-
-        <h3>צבעים וניגודיות</h3>
-        <ul>
-            <li>ניגודיות צבעים בין הטקסט לרקע עומדת בתקן הנדרש</li>
-            <li>האתר אינו מסתמך על צבע בלבד להעברת מידע</li>
-            <li>אפשרות להחלפה למצב ניגודיות גבוהה</li>
-        </ul>
-
-        <h3>תמיכה בעברית וכיווניות RTL</h3>
-        <ul>
-            <li>האתר כולו בעברית עם תמיכה מלאה בכיווניות מימין לשמאל (RTL)</li>
-            <li>טקסטים מיושרים בצורה נכונה</li>
-            <li>כל רכיבי האתר מותאמים לגלישה בעברית</li>
-        </ul>
-
-        <h3>עיצוב רספונסיבי</h3>
-        <ul>
-            <li>האתר מותאם לצפייה במגוון מכשירים - מחשב, טאבלט וסמארטפון</li>
-            <li>התוכן מתארגן מחדש באופן אוטומטי בהתאם לגודל המסך</li>
-            <li>כל הפונקציות זמינות גם בגרסה הניידת</li>
-        </ul>
-
-        <h3>מולטימדיה</h3>
-        <ul>
-            <li>כל תמונות התוכן כוללות תיאור טקסטואלי</li>
-            <li>קישורים מתוארים בצורה ברורה ומובנת</li>
-        </ul>
-
-        <h2>תהליך ההנגשה</h2>
-        <p>
-            האתר הונגש על ידי צוות מקצועי בהתאם לתקן הישראלי לנגישות תכנים באינטרנט (ת"י 5568)
-            ובהתאם להנחיות WCAG 2.1 ברמה AA.
-        </p>
-        <p>
-            ההנגשה כללה בדיקות אוטומטיות ידניות, תיקון קוד, והוספת תשתיות נגישות.
-            אנו ממשיכים לעבוד באופן שוטף על שיפור הנגישות באתר.
-        </p>
-
-        <h2>דפדפנים ותאימות</h2>
-        <p>האתר נבדק ונמצא תקין בדפדפנים הבאים:</p>
-        <ul>
-            <li>Google Chrome (גרסאות עדכניות)</li>
-            <li>Mozilla Firefox (גרסאות עדכניות)</li>
-            <li>Safari (גרסאות עדכניות)</li>
-            <li>Microsoft Edge (גרסאות עדכניות)</li>
-        </ul>
-        <p>אנו ממליצים להשתמש בגרסאות עדכניות של הדפדפנים לחוויית גלישה אופטימלית.</p>
-
-        <h2>מגבלות ידועות ומגבלות נגישות</h2>
-        <p>
-            למרות המאמצים שלנו להנגיש את כל העמודים באתר, ייתכן שחלק מהתכנים טרם הונגשו במלואם,
-            או שיש חלקים שטרם מצאנו פתרון טכנולוגי מתאים עבורם.
-        </p>
-        <p>
-            אנו ממשיכים במאמצים לשפר את נגישות האתר במטרה לאפשר את השירות הטוב והנגיש ביותר עבור כלל האוכלוסייה.
-        </p>
-
-        <div class="contact-box">
-            <h3>נתקלתם בבעיית נגישות באתר?</h3>
-            <p>
-                אנו עושים כל שביכולתנו כדי לשמור על תקני נגישות. אם נתקלתם בבעיה או במכשול נגישות באתר,
-                נשמח אם תיצרו איתנו קשר ונעשה כמיטב יכולתנו לתקן את הבעיה בהקדם האפשרי.
-            </p>
-            <p><strong>דרכי יצירת קשר:</strong></p>
-            <ul>
-                <li>טלפון: <a href="tel:+972542141321" dir="ltr">054-214-1321</a></li>
-                <li>אימייל: <a href="mailto:nourish.viktoria@gmail.com">Nourish.viktoria@gmail.com</a></li>
-                <li>וואטסאפ: <a href="https://wa.me/972542141321" target="_blank" rel="noopener noreferrer">שלחו הודעה</a></li>
-            </ul>
-            <p>
-                אנו נשתדל לחזור אליכם בהקדם האפשרי עם פתרון או הסבר לגבי הבעיה.
-            </p>
-        </div>
-
-        <h2>רכזת נגישות</h2>
-        <p>
-            רכזת הנגישות באתר אחראית על טיפול בפניות בנושאי נגישות ועל תיאום המשך תהליך ההנגשה:
-        </p>
-        <p>
-            <strong>שם:</strong> ויקי<br>
-            <strong>טלפון:</strong> <a href="tel:+972542141321" dir="ltr">054-214-1321</a><br>
-            <strong>אימייל:</strong> <a href="mailto:nourish.viktoria@gmail.com">Nourish.viktoria@gmail.com</a>
-        </p>
-
-        <h2>משוב ותלונות</h2>
-        <p>
-            אנו מעודדים אתכם לשלוח אלינו משוב והצעות לשיפור הנגישות באתר.
-            כל פנייה תיבדק ותטופל בכבוד ובמקצועיות.
-        </p>
-
-        <h2>פיקוח ואכיפה</h2>
-        <p>
-            האחראי על אכיפת תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013,
-            הוא הנציב לשוויון זכויות אנשים עם מוגבלות במשרד המשפטים.
-        </p>
-        <p>
-            <strong>משרד המשפטים - הנציבות לשוויון זכויות אנשים עם מוגבלות:</strong><br>
-            טלפון: 02-5318558<br>
-            אתר: <a href="https://www.gov.il/he/departments/the_commissioner_for_equal_rights_of_persons_with_disabilities"
-                    target="_blank" rel="noopener noreferrer">
-                    אתר הנציבות לשוויון זכויות
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand" aria-label="ויקטוריה גרמן – דיאטנית קלינית, דף הבית">
+                <img src="images/logo.png" alt="" width="249" height="168" class="brand-logo">
             </a>
-        </p>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="פתיחת תפריט">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="ניווט ראשי">
+                <ul class="nav-list">
+                    <li><a href="index.html#about">היכרות</a></li>
+                    <li><a href="index.html#services">שירותים</a></li>
+                    <li><a href="index.html#process">איך זה עובד</a></li>
+                    <li><a href="recipes.html">מתכונים</a></li>
+                    <li><a href="blog.html">בלוג נושם</a></li>
+                    <li><a href="index.html#contact">יצירת קשר</a></li>
+                </ul>
+                <a href="https://wa.me/972542141321?text=%D7%94%D7%99%D7%99%20%D7%95%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA"
+                   class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">לקביעת שיחה</a>
+            </nav>
+        </div>
+    </header>
 
-        <p class="update-date">
-            הצהרת נגישות זו עודכנה לאחרונה ביום: 2 בינואר 2026
-        </p>
+    <main id="main">
+        <section class="page-hero" aria-labelledby="page-title">
+            <div class="container">
+                <p class="eyebrow">נגישות</p>
+                <h1 id="page-title">הצהרת נגישות</h1>
+                <p class="lead">האתר של ויקטוריה גרמן – דיאטנית קלינית מחויב להנגשה לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות. כאן מפורטות ההתאמות שבוצעו, מה עדיין בעבודה, ואיך פונים אלינו.</p>
+            </div>
+        </section>
 
-        <a href="index.html" class="cta-button" style="margin-top: 2rem;">חזרה לדף הבית</a>
+        <section class="section">
+            <div class="container">
+                <article class="statement">
+                    <h2>מהי נגישות אתרי אינטרנט?</h2>
+                    <p>אתר אינטרנט נגיש הוא אתר המאפשר לאנשים עם מוגבלות לגלוש בו באותה רמה של יעילות והנאה כמו גולשים אחרים, באמצעות טכנולוגיות מסייעות ועיצוב מותאם.</p>
+
+                    <h2>התאמות הנגישות באתר</h2>
+                    <p>האתר הותאם בהתאם לתקן הישראלי (ת"י 5568) ולהנחיות WCAG 2.1 ברמה AA. ההתאמות כוללות, בין היתר:</p>
+
+                    <h3>שימוש במקלדת</h3>
+                    <ul>
+                        <li>ניתן לנווט באתר באמצעות מקלדת בלבד, ללא צורך בעכבר</li>
+                        <li>קישור "דילוג לתוכן הראשי" מופיע בלחיצה הראשונה על Tab</li>
+                        <li>סדר הטאבים (Tab) עוקב אחר מבנה הדף, וכל רכיב אינטראקטיבי מקבל סימון מיקוד ברור</li>
+                        <li>תפריטים וחלונות (כמו חלון המתכון) נסגרים במקש Escape והמיקוד חוזר למקומו</li>
+                    </ul>
+
+                    <h3>תמיכה בטכנולוגיות מסייעות</h3>
+                    <ul>
+                        <li>האתר תומך בקוראי מסך מובילים כגון NVDA, JAWS ו-VoiceOver</li>
+                        <li>שימוש בתגיות ואזורי ARIA מאפשר הבנה נכונה של מבנה הדף ושל מצב הרכיבים</li>
+                        <li>תמונות תוכן כוללות טקסט חלופי; אייקונים דקורטיביים מוסתרים מקוראי מסך</li>
+                        <li>כותרות מסומנות בהיררכיה ברורה (H1, H2, H3)</li>
+                    </ul>
+
+                    <h3>תפריט נגישות</h3>
+                    <p>בפינת המסך נמצא תפריט נגישות המאפשר:</p>
+                    <ul>
+                        <li><strong>הגדלת טקסט והקטנת טקסט</strong> – שינוי גודל הגופן בכל האתר (עד 150%)</li>
+                        <li><strong>ניגודיות גבוהה</strong> – החלפת צבעי האתר לניגודיות מקסימלית</li>
+                        <li><strong>הדגשת קישורים</strong> – קו תחתון לכל הקישורים</li>
+                        <li><strong>איפוס הגדרות</strong> – החזרה למצב ברירת המחדל</li>
+                    </ul>
+                    <p>ההגדרות נשמרות בדפדפן ונטענות בביקור הבא.</p>
+
+                    <h3>צבעים וניגודיות</h3>
+                    <ul>
+                        <li>ניגודיות הצבעים בין טקסט לרקע עומדת ביחס של 4.5:1 לפחות (AA)</li>
+                        <li>האתר אינו מסתמך על צבע בלבד להעברת מידע</li>
+                        <li>אפשרות למעבר למצב ניגודיות גבוהה</li>
+                    </ul>
+
+                    <h3>תנועה ואנימציה</h3>
+                    <ul>
+                        <li>האנימציות באתר עדינות וקצרות</li>
+                        <li>כאשר במערכת ההפעלה מופעלת העדפה להפחתת תנועה, האנימציות מבוטלות</li>
+                    </ul>
+
+                    <h3>תמיכה בעברית וכיווניות RTL</h3>
+                    <ul>
+                        <li>האתר כולו בעברית עם תמיכה מלאה בכיווניות מימין לשמאל</li>
+                        <li>מספרי טלפון וכתובות דוא"ל מוצגים בכיוון הנכון</li>
+                    </ul>
+
+                    <h3>עיצוב רספונסיבי</h3>
+                    <ul>
+                        <li>האתר מותאם לצפייה במחשב, בטאבלט ובסמארטפון</li>
+                        <li>אזורי לחיצה בגודל מינימלי של 44×44 פיקסלים במובייל</li>
+                        <li>ניתן להגדיל את התצוגה (זום) ללא הגבלה</li>
+                    </ul>
+
+                    <h2>תהליך ההנגשה</h2>
+                    <p>ההנגשה כללה בדיקות אוטומטיות וידניות, תיקון קוד והוספת תשתיות נגישות, בהתאם לתקן הישראלי (ת"י 5568) ולהנחיות WCAG 2.1 ברמה AA. אנו ממשיכים לעבוד באופן שוטף על שיפור הנגישות באתר.</p>
+
+                    <h2>דפדפנים ותאימות</h2>
+                    <p>האתר נבדק ונמצא תקין בגרסאות העדכניות של Google Chrome, Mozilla Firefox, Safari ו-Microsoft Edge. מומלץ להשתמש בגרסאות עדכניות לחוויית גלישה מיטבית.</p>
+
+                    <h2>מגבלות ידועות</h2>
+                    <p>בעמוד "בלוג נושם" מוצגים פוסטים מאינסטגרם באמצעות רכיב ההטמעה של אינסטגרם. הנגישות של רכיב זה תלויה באינסטגרם ואינה בשליטתנו המלאה; כל פוסט כולל קישור ישיר לצפייה באינסטגרם.</p>
+                    <p>למרות המאמצים להנגיש את כל העמודים, ייתכן שחלק מהתכנים טרם הונגשו במלואם. אנו ממשיכים במאמצים לשפר את נגישות האתר.</p>
+
+                    <div class="contact-box">
+                        <h3>נתקלתם בבעיית נגישות באתר?</h3>
+                        <p>אם נתקלתם בבעיה או במכשול נגישות, נשמח שתיצרו קשר ונעשה כמיטב יכולתנו לתקן בהקדם.</p>
+                        <ul>
+                            <li>טלפון: <a href="tel:+972542141321" dir="ltr">054-214-1321</a></li>
+                            <li>אימייל: <a href="mailto:nourish.viktoria@gmail.com" dir="ltr">nourish.viktoria@gmail.com</a></li>
+                            <li>וואטסאפ: <a href="https://wa.me/972542141321" target="_blank" rel="noopener noreferrer">שליחת הודעה</a></li>
+                        </ul>
+                    </div>
+
+                    <h2>רכזת נגישות</h2>
+                    <p>רכזת הנגישות אחראית על טיפול בפניות בנושאי נגישות ועל המשך תהליך ההנגשה:</p>
+                    <p>
+                        <strong>שם:</strong> ויקטוריה גרמן<br>
+                        <strong>טלפון:</strong> <a href="tel:+972542141321" dir="ltr">054-214-1321</a><br>
+                        <strong>אימייל:</strong> <a href="mailto:nourish.viktoria@gmail.com" dir="ltr">nourish.viktoria@gmail.com</a>
+                    </p>
+
+                    <h2>משוב ותלונות</h2>
+                    <p>אנו מעודדים אתכם לשלוח משוב והצעות לשיפור הנגישות באתר. כל פנייה תיבדק ותטופל בכבוד ובמקצועיות.</p>
+
+                    <h2>פיקוח ואכיפה</h2>
+                    <p>האחראי על אכיפת תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013, הוא הנציב לשוויון זכויות אנשים עם מוגבלות במשרד המשפטים.</p>
+                    <p>
+                        <strong>הנציבות לשוויון זכויות אנשים עם מוגבלות:</strong><br>
+                        טלפון: <span dir="ltr">02-5318558</span><br>
+                        <a href="https://www.gov.il/he/departments/the_commissioner_for_equal_rights_of_persons_with_disabilities" target="_blank" rel="noopener noreferrer">אתר הנציבות</a>
+                    </p>
+
+                    <p class="update-date">הצהרת נגישות זו עודכנה לאחרונה ביום 30 באוגוסט 2026.</p>
+                </article>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ויקי - תזונאית קלינית</h3>
-                    <p>ליווי תזונתי אישי ומקצועי</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="ויקטוריה גרמן – דיאטנית קלינית" width="249" height="168" class="footer-brand-logo" loading="lazy">
+                    <p>ליווי תזונתי אישי ומקצועי, בקצב שמתאים לך. מפגשים בזום או בקליניקה.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/nourish.viktoria/" target="_blank" rel="noopener noreferrer" aria-label="אינסטגרם">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
+                        </a>
+                        <a href="https://wa.me/972542141321" target="_blank" rel="noopener noreferrer" aria-label="וואטסאפ">
+                            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/><path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>קישורים</h3>
+                <nav class="footer-links" aria-label="קישורים">
+                    <h3>ניווט</h3>
                     <ul>
-                        <li><a href="index.html#home">דף הבית</a></li>
-                        <li><a href="index.html#about">אודות</a></li>
+                        <li><a href="index.html">דף הבית</a></li>
+                        <li><a href="index.html#about">היכרות</a></li>
                         <li><a href="index.html#services">שירותים</a></li>
+                        <li><a href="index.html#process">איך זה עובד</a></li>
                         <li><a href="recipes.html">מתכונים</a></li>
                         <li><a href="blog.html">בלוג נושם</a></li>
-                        <li><a href="accessibility-statement.html">הצהרת נגישות</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
+                </nav>
+                <div class="footer-contact">
                     <h3>יצירת קשר</h3>
-                    <p>טלפון: <a href="tel:+972542141321" dir="ltr">054-214-1321</a></p>
-                    <p>אימייל: <a href="mailto:nourish.viktoria@gmail.com">Nourish.viktoria@gmail.com</a></p>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+972542141321" dir="ltr">054-214-1321</a></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg><a href="mailto:nourish.viktoria@gmail.com" dir="ltr">nourish.viktoria@gmail.com</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ויקי - תזונאית קלינית. כל הזכויות שמורות.</p>
+                <p>&copy; 2026 ויקטוריה גרמן – דיאטנית קלינית. כל הזכויות שמורות.</p>
+                <a href="accessibility-statement.html" aria-current="page">הצהרת נגישות</a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <div class="float-stack">
+        <a href="https://wa.me/972542141321" class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="שליחת הודעה בוואטסאפ">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/><path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/></svg>
+        </a>
+        <a href="tel:+972542141321" class="float-btn float-phone" aria-label="התקשרו אלינו">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+    </div>
+
+    <div class="a11y" id="a11y">
+        <button class="a11y-toggle" id="a11y-toggle" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="תפריט נגישות">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7.5" r="1.25" fill="currentColor"/><path d="M7.5 10.5h9M12 10.5v4.5M9.5 18.5l2.5-3.5 2.5 3.5"/></svg>
+            <span>נגישות</span>
+        </button>
+        <div class="a11y-panel" id="a11y-panel" role="group" aria-label="אפשרויות נגישות">
+            <h2>אפשרויות נגישות</h2>
+            <button class="a11y-btn" type="button" data-action="increase-font"><span class="icon" aria-hidden="true">A+</span><span>הגדלת טקסט</span></button>
+            <button class="a11y-btn" type="button" data-action="decrease-font"><span class="icon" aria-hidden="true">A-</span><span>הקטנת טקסט</span></button>
+            <button class="a11y-btn" type="button" data-action="high-contrast" aria-pressed="false"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></span><span>ניגודיות גבוהה</span></button>
+            <button class="a11y-btn" type="button" data-action="underline-links" aria-pressed="false"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 4v6a6 6 0 0 0 12 0V4M4 20h16"/></svg></span><span>הדגשת קישורים</span></button>
+            <button class="a11y-btn" type="button" data-action="reset"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><span>איפוס הגדרות</span></button>
+            <a href="accessibility-statement.html" class="a11y-link">הצהרת נגישות</a>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
 </body>
 </html>

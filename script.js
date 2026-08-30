@@ -1,662 +1,357 @@
-// ===============================================
-// תפריט נגישות
-// ===============================================
-document.addEventListener('DOMContentLoaded', function() {
-    // אתחול משתנים
-    const accessibilityToggle = document.getElementById('accessibility-toggle');
-    const accessibilityOptions = document.getElementById('accessibility-options');
-    const accessibilityButtons = document.querySelectorAll('.accessibility-btn');
-    const root = document.documentElement;
-    let currentFontScale = 1;
+/* ==========================================================================
+   ויקטוריה גרמן – דיאטנית קלינית · סקריפט האתר
+   תפריט נגישות · ניווט · חשיפה בגלילה · מודאל מתכונים
+   ========================================================================== */
+(function () {
+    'use strict';
 
-    // טעינת הגדרות נגישות שמורות מ-localStorage
-    loadAccessibilitySettings();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const $ = (sel, root) => (root || document).querySelector(sel);
+    const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
 
-    // פתיחה/סגירה של תפריט הנגישות
-    accessibilityToggle.addEventListener('click', function() {
-        const isExpanded = accessibilityToggle.getAttribute('aria-expanded') === 'true';
-        accessibilityToggle.setAttribute('aria-expanded', !isExpanded);
-        accessibilityOptions.classList.toggle('active');
-        accessibilityOptions.setAttribute('aria-hidden', isExpanded);
-    });
-
-    // סגירת תפריט הנגישות בלחיצה מחוץ לתפריט
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.accessibility-menu')) {
-            accessibilityOptions.classList.remove('active');
-            accessibilityToggle.setAttribute('aria-expanded', 'false');
-            accessibilityOptions.setAttribute('aria-hidden', 'true');
+    /* ---------- הודעות לקוראי מסך ---------- */
+    let liveRegion = null;
+    function announce(message) {
+        if (!liveRegion) {
+            liveRegion = document.createElement('div');
+            liveRegion.className = 'sr-only';
+            liveRegion.setAttribute('role', 'status');
+            liveRegion.setAttribute('aria-live', 'polite');
+            document.body.appendChild(liveRegion);
         }
-    });
+        liveRegion.textContent = '';
+        window.setTimeout(() => { liveRegion.textContent = message; }, 50);
+    }
 
-    // פעולות הנגישות
-    accessibilityButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const action = this.getAttribute('data-action');
+    /* ---------- תפריט נגישות ---------- */
+    (function accessibilityMenu() {
+        const toggle = $('#a11y-toggle');
+        const panel = $('#a11y-panel');
+        if (!toggle || !panel) return;
 
-            switch(action) {
+        const root = document.documentElement;
+        const STORAGE_KEY = 'nourish-a11y';
+        const state = { fontScale: 1, highContrast: false, underlineLinks: false };
+
+        function apply() {
+            root.style.setProperty('--font-size-scale', state.fontScale.toFixed(2));
+            document.body.classList.toggle('high-contrast', state.highContrast);
+            document.body.classList.toggle('underline-links', state.underlineLinks);
+            const hc = $('[data-action="high-contrast"]', panel);
+            const ul = $('[data-action="underline-links"]', panel);
+            if (hc) hc.setAttribute('aria-pressed', String(state.highContrast));
+            if (ul) ul.setAttribute('aria-pressed', String(state.underlineLinks));
+        }
+
+        function save() {
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { /* אחסון לא זמין */ }
+        }
+
+        function load() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+                if (saved && typeof saved === 'object') {
+                    state.fontScale = Math.min(1.5, Math.max(0.8, Number(saved.fontScale) || 1));
+                    state.highContrast = Boolean(saved.highContrast);
+                    state.underlineLinks = Boolean(saved.underlineLinks);
+                }
+            } catch (e) { /* התעלמות מנתונים פגומים */ }
+            apply();
+        }
+
+        function setOpen(open) {
+            panel.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            if (open) {
+                const first = $('.a11y-btn', panel);
+                if (first) first.focus();
+            }
+        }
+
+        toggle.addEventListener('click', () => setOpen(!panel.classList.contains('is-open')));
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#a11y') && panel.classList.contains('is-open')) setOpen(false);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+                setOpen(false);
+                toggle.focus();
+            }
+        });
+
+        panel.addEventListener('click', (e) => {
+            const btn = e.target.closest('.a11y-btn');
+            if (!btn) return;
+            switch (btn.dataset.action) {
                 case 'increase-font':
-                    increaseFontSize();
+                    if (state.fontScale < 1.5) { state.fontScale = Math.round((state.fontScale + 0.1) * 10) / 10; announce('הטקסט הוגדל'); }
+                    else announce('הגעת לגודל הטקסט המקסימלי');
                     break;
                 case 'decrease-font':
-                    decreaseFontSize();
+                    if (state.fontScale > 0.8) { state.fontScale = Math.round((state.fontScale - 0.1) * 10) / 10; announce('הטקסט הוקטן'); }
+                    else announce('הגעת לגודל הטקסט המינימלי');
                     break;
                 case 'high-contrast':
-                    toggleHighContrast();
+                    state.highContrast = !state.highContrast;
+                    announce(state.highContrast ? 'ניגודיות גבוהה הופעלה' : 'ניגודיות גבוהה בוטלה');
+                    break;
+                case 'underline-links':
+                    state.underlineLinks = !state.underlineLinks;
+                    announce(state.underlineLinks ? 'הדגשת קישורים הופעלה' : 'הדגשת קישורים בוטלה');
                     break;
                 case 'reset':
-                    resetAccessibility();
-                    break;
+                    state.fontScale = 1; state.highContrast = false; state.underlineLinks = false;
+                    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* noop */ }
+                    apply();
+                    announce('הגדרות הנגישות אופסו');
+                    return;
+                default:
+                    return;
             }
+            apply();
+            save();
         });
-    });
 
-    // הגדלת גופן
-    function increaseFontSize() {
-        if (currentFontScale < 1.5) {
-            currentFontScale += 0.1;
-            root.style.setProperty('--font-size-scale', currentFontScale);
-            saveAccessibilitySettings();
-            announceToScreenReader('גופן הוגדל');
+        load();
+    })();
+
+    /* ---------- ניווט ראשי ---------- */
+    (function navigation() {
+        const toggle = $('.nav-toggle');
+        const nav = $('#site-nav');
+        if (!toggle || !nav) return;
+
+        function setOpen(open) {
+            nav.classList.toggle('is-open', open);
+            document.body.classList.toggle('nav-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? 'סגירת תפריט' : 'פתיחת תפריט');
         }
-    }
 
-    // הקטנת גופן
-    function decreaseFontSize() {
-        if (currentFontScale > 0.8) {
-            currentFontScale -= 0.1;
-            root.style.setProperty('--font-size-scale', currentFontScale);
-            saveAccessibilitySettings();
-            announceToScreenReader('גופן הוקטן');
-        }
-    }
+        toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
 
-    // החלפת מצב ניגודיות גבוהה
-    function toggleHighContrast() {
-        document.body.classList.toggle('high-contrast');
-        const isHighContrast = document.body.classList.contains('high-contrast');
-        saveAccessibilitySettings();
-        announceToScreenReader(isHighContrast ? 'ניגודיות גבוהה הופעלה' : 'ניגודיות גבוהה בוטלה');
-    }
+        nav.addEventListener('click', (e) => {
+            if (e.target.closest('a')) setOpen(false);
+        });
 
-    // איפוס הגדרות נגישות
-    function resetAccessibility() {
-        currentFontScale = 1;
-        root.style.setProperty('--font-size-scale', 1);
-        document.body.classList.remove('high-contrast');
-        localStorage.removeItem('accessibilitySettings');
-        announceToScreenReader('הגדרות נגישות אופסו');
-    }
-
-    // שמירת הגדרות נגישות ב-localStorage
-    function saveAccessibilitySettings() {
-        const settings = {
-            fontScale: currentFontScale,
-            highContrast: document.body.classList.contains('high-contrast')
-        };
-        localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
-    }
-
-    // טעינת הגדרות נגישות מ-localStorage
-    function loadAccessibilitySettings() {
-        const savedSettings = localStorage.getItem('accessibilitySettings');
-        if (savedSettings) {
-            const settings = JSON.parse(savedSettings);
-            currentFontScale = settings.fontScale || 1;
-            root.style.setProperty('--font-size-scale', currentFontScale);
-            if (settings.highContrast) {
-                document.body.classList.add('high-contrast');
-            }
-        }
-    }
-
-    // הודעה לקוראי מסך
-    function announceToScreenReader(message) {
-        const announcement = document.createElement('div');
-        announcement.setAttribute('role', 'status');
-        announcement.setAttribute('aria-live', 'polite');
-        announcement.className = 'sr-only';
-        announcement.textContent = message;
-        document.body.appendChild(announcement);
-
-        setTimeout(() => {
-            document.body.removeChild(announcement);
-        }, 1000);
-    }
-
-    // ===============================================
-    // תפריט ניווט נייד
-    // ===============================================
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-
-            // אנימציית המבורגר
-            const hamburgers = mobileMenuToggle.querySelectorAll('.hamburger');
-            if (navLinks.classList.contains('active')) {
-                hamburgers[0].style.transform = 'rotate(45deg) translateY(8px)';
-                hamburgers[1].style.opacity = '0';
-                hamburgers[2].style.transform = 'rotate(-45deg) translateY(-8px)';
-            } else {
-                hamburgers[0].style.transform = 'none';
-                hamburgers[1].style.opacity = '1';
-                hamburgers[2].style.transform = 'none';
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+                setOpen(false);
+                toggle.focus();
             }
         });
 
-        // סגירת התפריט בלחיצה על קישור
-        const navLinksItems = navLinks.querySelectorAll('a');
-        navLinksItems.forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                const hamburgers = mobileMenuToggle.querySelectorAll('.hamburger');
-                hamburgers[0].style.transform = 'none';
-                hamburgers[1].style.opacity = '1';
-                hamburgers[2].style.transform = 'none';
+        document.addEventListener('click', (e) => {
+            if (nav.classList.contains('is-open') && !e.target.closest('.site-header')) setOpen(false);
+        });
+
+        // סגירה אוטומטית כשעוברים לדסקטופ
+        const mq = window.matchMedia('(min-width: 1024px)');
+        const onChange = () => { if (mq.matches) setOpen(false); };
+        if (mq.addEventListener) mq.addEventListener('change', onChange);
+        else mq.addListener(onChange);
+    })();
+
+    /* ---------- סימון הסקשן הנוכחי בתפריט (דף הבית) ---------- */
+    (function scrollSpy() {
+        const links = $$('.nav-list a[data-spy]');
+        if (!links.length || !('IntersectionObserver' in window)) return;
+
+        const map = new Map();
+        links.forEach((link) => {
+            const section = document.getElementById(link.dataset.spy);
+            if (section) map.set(section, link);
+        });
+        if (!map.size) return;
+
+        let current = null;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const link = map.get(entry.target);
+                if (link === current) return;
+                links.forEach((l) => l.removeAttribute('aria-current'));
+                link.setAttribute('aria-current', 'true');
+                current = link;
             });
-        });
-    }
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
-    // ===============================================
-    // גלילה חלקה לעוגנים
-    // ===============================================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href !== '#' && href.length > 1) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    const targetPosition = target.offsetTop - navbarHeight - 20;
+        map.forEach((_, section) => observer.observe(section));
 
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+        // מעל ה-hero: אין סקשן פעיל
+        window.addEventListener('scroll', () => {
+            if (window.scrollY < 120 && current) {
+                current.removeAttribute('aria-current');
+                current = null;
+            }
+        }, { passive: true });
+    })();
+
+    /* ---------- חשיפה בגלילה ---------- */
+    (function reveal() {
+        const items = $$('.reveal');
+        if (!items.length) return;
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            items.forEach((el) => el.classList.add('is-visible'));
+            return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        items.forEach((el) => observer.observe(el));
+    })();
+
+    /* ---------- מודאל מתכונים ---------- */
+    (function recipes() {
+        const modal = $('#recipe-modal');
+        const cards = $$('.recipe-card[data-recipe]');
+        if (!modal || !cards.length) return;
+
+        const body = $('#modal-body', modal);
+        const closeBtn = $('.modal-close', modal);
+        const overlay = $('.modal-overlay', modal);
+        const dialog = $('.modal-dialog', modal);
+        let lastFocused = null;
+
+        const ICON = {
+            clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+            users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+            gauge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15l3.5-3.5"/><path d="M20.3 18a9 9 0 1 0-16.6 0"/></svg>'
+        };
+
+        const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+        function render(recipe) {
+            const list = (items) => items.map((i) => `<li>${escapeHtml(i)}</li>`).join('');
+            const n = recipe.nutrition;
+            return `
+                <div class="modal-head">
+                    <h2 id="modal-title">${escapeHtml(recipe.title)}</h2>
+                    <div class="modal-meta">
+                        <span>${ICON.clock}<span>${escapeHtml(recipe.time)}</span></span>
+                        <span>${ICON.users}<span>${escapeHtml(recipe.servings)}</span></span>
+                        <span>${ICON.gauge}<span>רמת קושי: ${escapeHtml(recipe.difficulty)}</span></span>
+                    </div>
+                </div>
+                <p class="modal-intro">${escapeHtml(recipe.intro)}</p>
+                <section class="modal-section" aria-labelledby="modal-ingredients">
+                    <h3 id="modal-ingredients">מצרכים</h3>
+                    <ul class="ingredients">${list(recipe.ingredients)}</ul>
+                </section>
+                <section class="modal-section" aria-labelledby="modal-steps">
+                    <h3 id="modal-steps">אופן ההכנה</h3>
+                    <ol class="instructions">${list(recipe.instructions)}</ol>
+                </section>
+                <section class="nutrition" aria-labelledby="modal-nutrition">
+                    <h3 id="modal-nutrition">ערכים תזונתיים למנה</h3>
+                    <div class="nutrition-grid">
+                        <div class="nutrition-item"><span class="nutrition-value">${escapeHtml(n.calories)}</span><span class="nutrition-label">קלוריות</span></div>
+                        <div class="nutrition-item"><span class="nutrition-value">${escapeHtml(n.protein)}</span><span class="nutrition-label">חלבון</span></div>
+                        <div class="nutrition-item"><span class="nutrition-value">${escapeHtml(n.carbs)}</span><span class="nutrition-label">פחמימות</span></div>
+                        <div class="nutrition-item"><span class="nutrition-value">${escapeHtml(n.fat)}</span><span class="nutrition-label">שומן</span></div>
+                        <div class="nutrition-item"><span class="nutrition-value">${escapeHtml(n.fiber)}</span><span class="nutrition-label">סיבים</span></div>
+                    </div>
+                </section>`;
+        }
+
+        function open(id) {
+            const recipe = RECIPES[id];
+            if (!recipe) return;
+            lastFocused = document.activeElement;
+            body.innerHTML = render(recipe);
+            modal.classList.add('is-open');
+            modal.removeAttribute('aria-hidden');
+            document.body.style.overflow = 'hidden';
+            dialog.scrollTop = 0;
+            closeBtn.focus();
+        }
+
+        function close() {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+        }
+
+        cards.forEach((card) => {
+            const btn = $('.recipe-cta', card);
+            if (btn) btn.addEventListener('click', () => open(card.dataset.recipe));
+        });
+        closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', close);
+
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('is-open')) return;
+            if (e.key === 'Escape') { close(); return; }
+            if (e.key === 'Tab') {
+                // לכידת פוקוס בתוך הדיאלוג
+                const focusable = $$('button, [href], input, [tabindex]:not([tabindex="-1"])', dialog)
+                    .filter((el) => !el.hasAttribute('disabled'));
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
             }
         });
-    });
+    })();
 
-    // ===============================================
-    // צמצום navbar והסתרת/הצגת כפתור וואטסאפ צף בגלילה
-    // ===============================================
-    const whatsappFloat = document.querySelector('.whatsapp-float');
-    const navbar = document.querySelector('.navbar');
-
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // צמצום ה-navbar כשגוללים למטה
-        if (navbar) {
-            if (scrollTop > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        }
-
-        // התצוגה של כפתור הוואטסאפ
-        if (whatsappFloat) {
-            if (scrollTop > 300) {
-                whatsappFloat.style.opacity = '1';
-                whatsappFloat.style.visibility = 'visible';
-            } else {
-                whatsappFloat.style.opacity = '0.7';
-            }
-        }
-    });
-
-    // ===============================================
-    // אנימציית כניסה לאלמנטים בגלילה
-    // ===============================================
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // צפייה באלמנטים שצריכים אנימציה
-    const animatedElements = document.querySelectorAll('.service-card, .about-content, .contact-content');
-    animatedElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(element);
-    });
-
-    // ===============================================
-    // תמיכה במקלדת לניווט
-    // ===============================================
-    document.addEventListener('keydown', function(e) {
-        // Escape לסגירת תפריטים
-        if (e.key === 'Escape') {
-            if (accessibilityOptions.classList.contains('active')) {
-                accessibilityOptions.classList.remove('active');
-                accessibilityToggle.setAttribute('aria-expanded', 'false');
-                accessibilityOptions.setAttribute('aria-hidden', 'true');
-                accessibilityToggle.focus();
-            }
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                const hamburgers = mobileMenuToggle.querySelectorAll('.hamburger');
-                hamburgers[0].style.transform = 'none';
-                hamburgers[1].style.opacity = '1';
-                hamburgers[2].style.transform = 'none';
-            }
-        }
-    });
-
-    // ===============================================
-    // הגנה על מספרי טלפון מבוטים
-    // ===============================================
-    // הערה: בפרודקשן, עדיף להחליף את מספרי הטלפון בפונקציה דינמית
-    // כדי למנוע סריקה אוטומטית על ידי בוטים
-
-    // ===============================================
-    // CSS נוסף עבור קוראי מסך
-    // ===============================================
-    const srOnlyStyle = document.createElement('style');
-    srOnlyStyle.textContent = `
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-    `;
-    document.head.appendChild(srOnlyStyle);
-
-    // ===============================================
-    // טעינה של תמונות בצורה עצלה (Lazy Loading)
-    // ===============================================
-    if ('loading' in HTMLImageElement.prototype) {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => {
-            img.src = img.dataset.src;
-        });
-    } else {
-        // Fallback לדפדפנים ישנים
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-        document.body.appendChild(script);
-    }
-
-    // ===============================================
-    // הודעת עוגיות (אופציונלי)
-    // ===============================================
-    // אם תרצי להוסיף הודעת עוגיות בעתיד, כאן המקום
-
-    console.log('אתר התזונאית נטען בהצלחה! 🌱');
-
-    // ===============================================
-    // מתכונים - מודל אינטראקטיבי
-    // ===============================================
-
-    // נתוני מתכונים
-    const recipesData = {
+    /* ---------- נתוני המתכונים ---------- */
+    const RECIPES = {
         1: {
-            title: "קערת בוקר מזינה",
-            time: "10 דקות",
-            servings: "2 מנות",
-            difficulty: "קל",
-            intro: "קערת שיבולת שועל קלאסית ומזינה, עשירה בסיבים תזונתיים וחלבון. מושלמת להתחלת יום אנרגטית.",
-            ingredients: [
-                "1 כוס שיבולת שועל",
-                "2 כוסות חלב/משקה צמחי",
-                "1 בננה בשלה",
-                "2 כפות אגוזי מלך קצוצים",
-                "1 כפית קינמון",
-                "1 כף דבש/סילאן",
-                "פירות עונה לקישוט",
-                "1 כף זרעי צ'יה (אופציונלי)"
-            ],
-            instructions: [
-                "בסיר בינוני, הביאו את החלב לרתיחה על אש בינונית",
-                "הוסיפו את שיבולת השועל והקטינו את האש",
-                "בשלו תוך כדי ערבוב מדי פעם למשך 5 דקות",
-                "מרסקו את הבננה והוסיפו לקערה",
-                "הוסיפו קינמון ודבש וערבבו היטב",
-                "מחלקים לשתי קערות",
-                "מקשטים באגוזים, פירות וזרעי צ'יה",
-                "הגישו חם ותיהנו!"
-            ],
-            nutrition: {
-                calories: "320",
-                protein: "12g",
-                carbs: "45g",
-                fat: "10g",
-                fiber: "8g"
-            }
+            title: 'קערת בוקר מזינה',
+            time: '10 דקות', servings: '2 מנות', difficulty: 'קל',
+            intro: 'קערת שיבולת שועל קלאסית ומזינה, עשירה בסיבים תזונתיים ובחלבון. מושלמת להתחלת יום אנרגטית.',
+            ingredients: ['1 כוס שיבולת שועל', '2 כוסות חלב או משקה צמחי', '1 בננה בשלה', '2 כפות אגוזי מלך קצוצים', '1 כפית קינמון', '1 כף דבש או סילאן', 'פירות עונה לקישוט', '1 כף זרעי צ\'יה (אופציונלי)'],
+            instructions: ['בסיר בינוני מביאים את החלב לרתיחה על אש בינונית', 'מוסיפים את שיבולת השועל ומנמיכים את האש', 'מבשלים תוך ערבוב מדי פעם כ-5 דקות', 'מועכים את הבננה ומוסיפים לסיר', 'מוסיפים קינמון ודבש ומערבבים היטב', 'מחלקים לשתי קערות', 'מקשטים באגוזים, בפירות ובזרעי צ\'יה', 'מגישים חם'],
+            nutrition: { calories: '320', protein: '12 גר\'', carbs: '45 גר\'', fat: '10 גר\'', fiber: '8 גר\'' }
         },
         2: {
-            title: "סלט קינואה צבעוני",
-            time: "25 דקות",
-            servings: "4 מנות",
-            difficulty: "בינוני",
-            intro: "סלט קינואה טרי ומרענן, עשיר בחלבון צמחי וירקות צבעוניים. ארוחה שלמה ומאוזנת.",
-            ingredients: [
-                "1 כוס קינואה לא מבושלת",
-                "2 כוסות מים",
-                "1 מלפפון קצוץ לקוביות",
-                "2 עגבניות שרי חתוכות לרבעים",
-                "1 פלפל אדום קצוץ",
-                "1 גזר מגורד",
-                "1/2 בצל סגול קצוץ דק",
-                "2 כפות פטרוזיליה טרייה",
-                "מיץ מ-2 לימונים",
-                "3 כפות שמן זית",
-                "מלח ופלפל שחור לפי הטעם"
-            ],
-            instructions: [
-                "שוטפים את הקינואה במים קרים",
-                "מבשלים את הקינואה במים רותחים עם קורט מלח למשך 15 דקות",
-                "מסננים ומצננים את הקינואה",
-                "חותכים את כל הירקות לגדלים אחידים",
-                "בקערה גדולה, מערבבים את הקינואה המקוררת עם הירקות",
-                "מכינים רוטב: מערבבים מיץ לימון, שמן זית, מלח ופלפל",
-                "שופכים את הרוטב על הסלט ומערבבים היטב",
-                "מצננים במקרר לפחות 30 דקות לפני ההגשה",
-                "מגישים קר ותיהנו!"
-            ],
-            nutrition: {
-                calories: "285",
-                protein: "9g",
-                carbs: "38g",
-                fat: "11g",
-                fiber: "6g"
-            }
+            title: 'סלט קינואה צבעוני',
+            time: '25 דקות', servings: '4 מנות', difficulty: 'בינוני',
+            intro: 'סלט קינואה טרי ומרענן, עשיר בחלבון צמחי ובירקות צבעוניים. ארוחה שלמה ומאוזנת.',
+            ingredients: ['1 כוס קינואה', '2 כוסות מים', '1 מלפפון חתוך לקוביות', '2 כוסות עגבניות שרי חצויות', '1 פלפל אדום קצוץ', '1 גזר מגורד', '1/2 בצל סגול קצוץ דק', '2 כפות פטרוזיליה טרייה', 'מיץ מ-2 לימונים', '3 כפות שמן זית', 'מלח ופלפל שחור לפי הטעם'],
+            instructions: ['שוטפים את הקינואה במים קרים', 'מבשלים את הקינואה במים רותחים עם קורט מלח כ-15 דקות', 'מסננים ומצננים', 'חותכים את כל הירקות לגדלים אחידים', 'בקערה גדולה מערבבים את הקינואה המקוררת עם הירקות', 'מכינים רוטב: מיץ לימון, שמן זית, מלח ופלפל', 'שופכים את הרוטב על הסלט ומערבבים היטב', 'מצננים במקרר לפחות 30 דקות לפני ההגשה', 'מגישים קר'],
+            nutrition: { calories: '285', protein: '9 גר\'', carbs: '38 גר\'', fat: '11 גר\'', fiber: '6 גר\'' }
         },
         3: {
-            title: "חביתת ירקות בתנור",
-            time: "35 דקות",
-            servings: "6 מנות",
-            difficulty: "קל",
-            intro: "חביתה אפויה עשירה בחלבון וירקות. מנה מושלמת לארוחת צהריים או ערב משפחתית.",
-            ingredients: [
-                "8 ביצים גדולות",
-                "1/2 כוס חלב",
-                "2 כוסות תרד קפוא (מופשר)",
-                "1 בצל גדול קצוץ",
-                "2 פלפלים צבעוניים קצוצים",
-                "3 עגבניות חתוכות לפרוסות",
-                "1 כוס גבינה לבנה 5%",
-                "2 שיני שום כתושות",
-                "מלח, פלפל ופלפל אדום חריף",
-                "2 כפות שמן זית"
-            ],
-            instructions: [
-                "מחממים תנור ל-180 מעלות",
-                "בפלנצ'ה, מחממים שמן ומטגנים בצל עד הזהבה",
-                "מוסיפים פלפלים ושום ומטגנים 3 דקות",
-                "מוסיפים תרד ומבשלים עד שהנוזלים מתאדים",
-                "בקערה, טורפים ביצים עם חלב, מלח ופלפל",
-                "משמנים תבנית אפייה ושופכים את תערובת הביצים",
-                "מוסיפים את הירקות המטוגנים ומערבבים קלות",
-                "מפזרים פרוסות עגבניות וגבינה לבנה מעל",
-                "אופים 25-30 דקות עד שהחביתה מוצקה",
-                "מצננים 5 דקות, חותכים למנות ומגישים"
-            ],
-            nutrition: {
-                calories: "195",
-                protein: "16g",
-                carbs: "8g",
-                fat: "11g",
-                fiber: "2g"
-            }
+            title: 'חביתת ירקות בתנור',
+            time: '35 דקות', servings: '6 מנות', difficulty: 'קל',
+            intro: 'חביתה אפויה עשירה בחלבון ובירקות. מנה מושלמת לארוחת צהריים או ערב משפחתית.',
+            ingredients: ['8 ביצים גדולות', '1/2 כוס חלב', '2 כוסות תרד קפוא (מופשר)', '1 בצל גדול קצוץ', '2 פלפלים צבעוניים קצוצים', '3 עגבניות חתוכות לפרוסות', '1 כוס גבינה לבנה 5%', '2 שיני שום כתושות', 'מלח, פלפל ופלפל חריף', '2 כפות שמן זית'],
+            instructions: ['מחממים תנור ל-180 מעלות', 'במחבת מחממים שמן ומטגנים בצל עד הזהבה', 'מוסיפים פלפלים ושום ומטגנים 3 דקות', 'מוסיפים תרד ומבשלים עד שהנוזלים מתאדים', 'בקערה טורפים ביצים עם חלב, מלח ופלפל', 'משמנים תבנית ושופכים את תערובת הביצים', 'מוסיפים את הירקות ומערבבים קלות', 'מפזרים פרוסות עגבנייה וגבינה לבנה מעל', 'אופים 25–30 דקות עד שהחביתה מתייצבת', 'מצננים 5 דקות, חותכים ומגישים'],
+            nutrition: { calories: '195', protein: '16 גר\'', carbs: '8 גר\'', fat: '11 גר\'', fiber: '2 גר\'' }
         },
         4: {
-            title: "כדורי אנרגיה טבעיים",
-            time: "15 דקות",
-            servings: "12 כדורים",
-            difficulty: "קל",
-            intro: "חטיף בריא ומתוק טבעי, עשיר באנרגיה ובחומרים מזינים. מושלם לפני פעילות גופנית.",
-            ingredients: [
-                "1 כוס תמרים ללא גלעין",
-                "1 כוס שקדים נאים",
-                "2 כפות קקאו",
-                "2 כפות קוקוס מגורד",
-                "1 כפית תמצית וניל",
-                "קורט מלח",
-                "2 כפות מים (אם נדרש)",
-                "שקדים שלמים לקישוט"
-            ],
-            instructions: [
-                "במעבד מזון, טוחנים את השקדים לפירורים גסים",
-                "מוסיפים את התמרים וממשיכים לעבד",
-                "מוסיפים קקאו, קוקוס, וניל ומלח",
-                "מעבדים עד לקבלת בצק דביק",
-                "אם הבצק יבש מדי, מוסיפים מעט מים",
-                "לוקחים כפית מהתערובת ומגלגלים לכדור",
-                "לוחצים שקד שלם במרכז כל כדור",
-                "מגלגלים בקוקוס מגורד לקישוט (אופציונלי)",
-                "מצננים במקרר לפחות שעה",
-                "שומרים במקרר עד שבוע"
-            ],
-            nutrition: {
-                calories: "110",
-                protein: "3g",
-                carbs: "14g",
-                fat: "6g",
-                fiber: "3g"
-            }
+            title: 'כדורי אנרגיה טבעיים',
+            time: '15 דקות', servings: '12 כדורים', difficulty: 'קל',
+            intro: 'חטיף בריא ומתוק באופן טבעי, עשיר באנרגיה ובחומרים מזינים. מושלם לפני פעילות גופנית.',
+            ingredients: ['1 כוס תמרים מגולענים', '1 כוס שקדים טבעיים', '2 כפות קקאו', '2 כפות קוקוס מגורד', '1 כפית תמצית וניל', 'קורט מלח', '2 כפות מים (אם נדרש)', 'שקדים שלמים לקישוט'],
+            instructions: ['במעבד מזון טוחנים את השקדים לפירורים גסים', 'מוסיפים את התמרים וממשיכים לעבד', 'מוסיפים קקאו, קוקוס, וניל ומלח', 'מעבדים עד לקבלת בצק דביק', 'אם הבצק יבש מדי, מוסיפים מעט מים', 'לוקחים כפית מהתערובת ומגלגלים לכדור', 'לוחצים שקד שלם במרכז כל כדור', 'מגלגלים בקוקוס מגורד (אופציונלי)', 'מצננים במקרר לפחות שעה', 'שומרים במקרר עד שבוע'],
+            nutrition: { calories: '110', protein: '3 גר\'', carbs: '14 גר\'', fat: '6 גר\'', fiber: '3 גר\'' }
         },
         5: {
-            title: "מרק ירקות חורפי",
-            time: "45 דקות",
-            servings: "6 מנות",
-            difficulty: "בינוני",
-            intro: "מרק עשיר ומחמם, מלא בירקות עונתיים ועדשים. מושלם לערב חורף קר.",
-            ingredients: [
-                "2 בצלים גדולים קצוצים",
-                "3 גזרים חתוכים לקוביות",
-                "2 בטטות חתוכות לקוביות",
-                "1 כוס עדשים כתומות",
-                "2 עגבניות גדולות קצוצות",
-                "4 שיני שום כתושות",
-                "2 ליטר מרק ירקות",
-                "1 כפית כורכום",
-                "1 כפית כמון",
-                "מלח ופלפל שחור",
-                "3 כפות שמן זית",
-                "פטרוזיליה טרייה לקישוט"
-            ],
-            instructions: [
-                "בסיר גדול, מחממים שמן זית על אש בינונית",
-                "מוסיפים בצל ומטגנים 5 דקות עד הזהבה",
-                "מוסיפים שום ותבלינים ומטגנים דקה נוספת",
-                "מוסיפים גזר ובטטה ומערבבים",
-                "שופכים את מרק הירקות ומביאים לרתיחה",
-                "מוסיפים עדשים ועגבניות",
-                "מורידים לאש נמוכה ומבשלים 30 דקות",
-                "טועמים ומתבלים במלח ופלפל",
-                "אפשר לטחון חלק מהמרק לקבלת מרק סמיך יותר",
-                "מגישים חם עם פטרוזיליה טרייה"
-            ],
-            nutrition: {
-                calories: "245",
-                protein: "11g",
-                carbs: "42g",
-                fat: "4g",
-                fiber: "10g"
-            }
+            title: 'מרק ירקות חורפי',
+            time: '45 דקות', servings: '6 מנות', difficulty: 'בינוני',
+            intro: 'מרק עשיר ומחמם, מלא בירקות עונתיים ובעדשים. מושלם לערב חורף קר.',
+            ingredients: ['2 בצלים גדולים קצוצים', '3 גזרים חתוכים לקוביות', '2 בטטות חתוכות לקוביות', '1 כוס עדשים כתומות', '2 עגבניות גדולות קצוצות', '4 שיני שום כתושות', '2 ליטר מרק ירקות', '1 כפית כורכום', '1 כפית כמון', 'מלח ופלפל שחור', '3 כפות שמן זית', 'פטרוזיליה טרייה לקישוט'],
+            instructions: ['בסיר גדול מחממים שמן זית על אש בינונית', 'מוסיפים בצל ומטגנים 5 דקות עד הזהבה', 'מוסיפים שום ותבלינים ומטגנים דקה נוספת', 'מוסיפים גזר ובטטה ומערבבים', 'שופכים את מרק הירקות ומביאים לרתיחה', 'מוסיפים עדשים ועגבניות', 'מנמיכים לאש נמוכה ומבשלים 30 דקות', 'טועמים ומתקנים תיבול', 'אפשר לטחון חלק מהמרק לקבלת מרקם סמיך יותר', 'מגישים חם עם פטרוזיליה טרייה'],
+            nutrition: { calories: '245', protein: '11 גר\'', carbs: '42 גר\'', fat: '4 גר\'', fiber: '10 גר\'' }
         },
         6: {
-            title: "סמוזי ירוק מרענן",
-            time: "5 דקות",
-            servings: "2 מנות",
-            difficulty: "קל",
-            intro: "משקה ירוק מזין ומרענן, עשיר בוויטמינים ומינרלים. התחלה מושלמת ליום.",
-            ingredients: [
-                "2 כוסות תרד טרי",
-                "1 בננה בשלה קפואה",
-                "1/2 אבוקדו",
-                "1 כוס משקה שקדים",
-                "מיץ מ-1/2 לימון",
-                "1 כף דבש או סילאן",
-                "1/2 כוס קוביות קרח",
-                "1 כף זרעי פשתן (אופציונלי)"
-            ],
-            instructions: [
-                "שוטפים היטב את התרד",
-                "שמים את כל המרכיבים בבלנדר",
-                "מערבלים במהירות גבוהה למשך דקה",
-                "בודקים את העקביות ומוסיפים נוזלים אם נדרש",
-                "טועמים ומתקנים מתיקות אם צריך",
-                "שופכים לכוסות",
-                "מגישים מיד וקרים"
-            ],
-            nutrition: {
-                calories: "185",
-                protein: "4g",
-                carbs: "28g",
-                fat: "8g",
-                fiber: "6g"
-            }
+            title: 'סמוזי ירוק מרענן',
+            time: '5 דקות', servings: '2 מנות', difficulty: 'קל',
+            intro: 'משקה ירוק מזין ומרענן, עשיר בוויטמינים ובמינרלים. התחלה מושלמת ליום.',
+            ingredients: ['2 כוסות תרד טרי', '1 בננה בשלה קפואה', '1/2 אבוקדו', '1 כוס משקה שקדים', 'מיץ מ-1/2 לימון', '1 כף דבש או סילאן', '1/2 כוס קוביות קרח', '1 כף זרעי פשתן (אופציונלי)'],
+            instructions: ['שוטפים היטב את התרד', 'שמים את כל המרכיבים בבלנדר', 'מערבלים במהירות גבוהה כדקה', 'בודקים את המרקם ומוסיפים נוזלים אם צריך', 'טועמים ומתקנים מתיקות', 'מוזגים לכוסות', 'מגישים מיד, קר'],
+            nutrition: { calories: '185', protein: '4 גר\'', carbs: '28 גר\'', fat: '8 גר\'', fiber: '6 גר\'' }
         }
     };
-
-    // פונקציה ליצירת תוכן המודל
-    function createModalContent(recipeId) {
-        const recipe = recipesData[recipeId];
-        if (!recipe) return '';
-
-        return `
-            <div class="modal-recipe-header">
-                <h2 id="modal-title">${recipe.title}</h2>
-                <div class="modal-recipe-meta">
-                    <span>⏱️ ${recipe.time}</span>
-                    <span>👥 ${recipe.servings}</span>
-                    <span>📊 ${recipe.difficulty}</span>
-                </div>
-            </div>
-
-            <p class="modal-recipe-intro">${recipe.intro}</p>
-
-            <div class="modal-recipe-section">
-                <h3>מצרכים</h3>
-                <ul class="modal-ingredients-list">
-                    ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                </ul>
-            </div>
-
-            <div class="modal-recipe-section">
-                <h3>אופן ההכנה</h3>
-                <ol class="modal-instructions-list">
-                    ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
-                </ol>
-            </div>
-
-            <div class="modal-nutrition-info">
-                <h3 style="text-align: center; margin-bottom: 16px;">ערכים תזונתיים למנה</h3>
-                <div class="modal-nutrition-grid">
-                    <div class="modal-nutrition-item">
-                        <span class="modal-nutrition-value">${recipe.nutrition.calories}</span>
-                        <span class="modal-nutrition-label">קלוריות</span>
-                    </div>
-                    <div class="modal-nutrition-item">
-                        <span class="modal-nutrition-value">${recipe.nutrition.protein}</span>
-                        <span class="modal-nutrition-label">חלבון</span>
-                    </div>
-                    <div class="modal-nutrition-item">
-                        <span class="modal-nutrition-value">${recipe.nutrition.carbs}</span>
-                        <span class="modal-nutrition-label">פחמימות</span>
-                    </div>
-                    <div class="modal-nutrition-item">
-                        <span class="modal-nutrition-value">${recipe.nutrition.fat}</span>
-                        <span class="modal-nutrition-label">שומן</span>
-                    </div>
-                    <div class="modal-nutrition-item">
-                        <span class="modal-nutrition-value">${recipe.nutrition.fiber}</span>
-                        <span class="modal-nutrition-label">סיבים</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    // פתיחת מודל
-    function openRecipeModal(recipeId) {
-        const modal = document.getElementById('recipe-modal');
-        const modalBody = document.getElementById('modal-body');
-
-        if (!modal || !modalBody) return;
-
-        // יצירת תוכן המודל
-        modalBody.innerHTML = createModalContent(recipeId);
-
-        // פתיחת המודל עם אנימציה
-        modal.setAttribute('aria-hidden', 'false');
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        // מיקוד על המודל
-        modal.querySelector('.recipe-modal-close').focus();
-    }
-
-    // סגירת מודל
-    function closeRecipeModal() {
-        const modal = document.getElementById('recipe-modal');
-        if (!modal) return;
-
-        modal.setAttribute('aria-hidden', 'true');
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // האזנה ללחיצות על כרטיסי מתכונים
-    const recipeCards = document.querySelectorAll('.recipe-card');
-    recipeCards.forEach(card => {
-        const viewBtn = card.querySelector('.recipe-view-btn');
-        if (viewBtn) {
-            viewBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const recipeId = card.getAttribute('data-recipe');
-                openRecipeModal(recipeId);
-            });
-        }
-    });
-
-    // סגירת מודל בלחיצה על כפתור הסגירה
-    const modalCloseBtn = document.querySelector('.recipe-modal-close');
-    if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeRecipeModal);
-    }
-
-    // סגירת מודל בלחיצה על הרקע
-    const modalOverlay = document.querySelector('.recipe-modal-overlay');
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', closeRecipeModal);
-    }
-
-    // סגירת מודל עם מקש Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('recipe-modal');
-            if (modal && modal.classList.contains('active')) {
-                closeRecipeModal();
-            }
-        }
-    });
-});
+})();

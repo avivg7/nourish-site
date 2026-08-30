@@ -1,1501 +1,1087 @@
-/* ===============================================
-   משתני CSS בסיסיים - צבעים עדינים ומרגיעים
-   =============================================== */
+/* ==========================================================================
+   ויקטוריה גרמן – דיאטנית קלינית
+   שפה ויזואלית: סלק (מהלוגו) כצבע הדגשה, מרווה כגוון משני, קרם חם כרקע.
+   כותרות: Frank Ruhl Libre · גוף: Heebo
+   ========================================================================== */
+
+/* ---------- טוקנים ---------- */
 :root {
-    --primary-color: #8FB5AA;      /* ירוק-טורקיז עדין */
-    --secondary-color: #E8D5C4;    /* בז׳ חם */
-    --accent-color: #D4A5A5;       /* ורוד-אדמדם עדין */
-    --text-dark: #510d18;          /* אפור כהה לטקסט */
-    --text-light: #5D6D7E;         /* אפור בהיר לטקסט משני */
-    --background-light: #F8F9FA;   /* רקע בהיר מאוד */
-    --background-white: #FFFFFF;   /* רקע לבן */
-    --shadow-light: rgba(0, 0, 0, 0.08);
-    --shadow-medium: rgba(0, 0, 0, 0.12);
-    --whatsapp-green: #25D366;
+    /* צבע */
+    --cream: #FBF7F2;
+    --paper: #FFFFFF;
+    --ink: #2A1F1D;
+    --ink-soft: #5E514D;
+    --line: rgba(42, 31, 29, 0.10);
 
-    --font-size-base: 16px;
+    --beet: #B8446A;         /* כפתורים – לבן עליו 5.2:1 */
+    --beet-deep: #9E3658;    /* טקסט/קישורים – על קרם 6.3:1 */
+    --beet-tint: #F7E3EA;
+    --beet-glow: rgba(200, 88, 120, 0.18);
+
+    --sage: #A8B0A0;         /* דקורטיבי בלבד */
+    --sage-deep: #4F6A5A;    /* טקסט משני על קרם 5.6:1 */
+    --sage-tint: #EDF1EA;
+    --sage-ink: #3F5449;     /* פוטר */
+
+    --whatsapp: #0E7A6E;     /* לבן עליו 5.2:1 */
+    --whatsapp-hover: #0B655B;
+
+    /* טיפוגרפיה */
+    --font-display: 'Frank Ruhl Libre', 'David', 'Times New Roman', serif;
+    --font-body: 'Heebo', 'Arial Hebrew', Arial, sans-serif;
     --font-size-scale: 1;
+
+    /* מידות */
+    --header-h: 76px;
+    --container: 1140px;
+    --gutter: 1.25rem;
+    --radius-sm: 10px;
+    --radius: 18px;
+    --radius-lg: 28px;
+    --shadow-sm: 0 1px 2px rgba(42, 31, 29, 0.06), 0 4px 14px rgba(42, 31, 29, 0.05);
+    --shadow-md: 0 8px 28px rgba(42, 31, 29, 0.10);
+    --shadow-lg: 0 24px 60px rgba(42, 31, 29, 0.18);
+
+    /* תנועה */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur: 220ms;
+
+    /* שכבות */
+    --z-header: 100;
+    --z-nav: 110;
+    --z-float: 90;
+    --z-a11y: 120;
+    --z-modal: 1000;
 }
 
-/* ===============================================
-   איפוס בסיסי
-   =============================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* ---------- איפוס ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
 
 html {
+    font-size: calc(100% * var(--font-size-scale));
     scroll-behavior: smooth;
-    font-size: var(--font-size-base);
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    font-family: 'Heebo', sans-serif;
-    color: var(--text-dark);
-    line-height: 1.7;
-    background-color: var(--background-light);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--ink);
+    background: var(--cream);
     direction: rtl;
     text-align: right;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100dvh;
 }
 
-/* ===============================================
-   טיפוגרפיה
-   =============================================== */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-    color: var(--text-dark);
+img, picture, svg { display: block; max-width: 100%; }
+img { height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; }
+ul, ol { padding: 0; }
+a { color: var(--beet-deep); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--beet); }
+
+:focus-visible {
+    outline: 3px solid var(--beet);
+    outline-offset: 3px;
+    border-radius: 4px;
 }
 
-h1 {
-    font-size: calc(2.5rem * var(--font-size-scale));
+.sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
 }
 
-h2 {
-    font-size: calc(2rem * var(--font-size-scale));
-}
-
-h3 {
-    font-size: calc(1.5rem * var(--font-size-scale));
-}
-
-p {
-    margin-bottom: 1rem;
-    font-size: calc(1rem * var(--font-size-scale));
-    line-height: 1.8;
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--accent-color);
-}
-
-a:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* ===============================================
-   Container
-   =============================================== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-/* ===============================================
-   תפריט נגישות
-   =============================================== */
-.accessibility-menu {
-    position: fixed;
-    top: 100px;
-    left: 20px;
-    z-index: 9999;
-}
-
-.accessibility-toggle {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 12px 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: calc(0.95rem * var(--font-size-scale));
-    font-family: 'Heebo', sans-serif;
-    font-weight: 500;
-    box-shadow: 0 4px 12px var(--shadow-medium);
-    transition: all 0.3s ease;
-}
-
-.accessibility-toggle:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--shadow-medium);
-}
-
-.accessibility-toggle:focus {
-    outline: 3px solid var(--text-dark);
-    outline-offset: 2px;
-}
-
-.accessibility-options {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: var(--background-white);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 8px 24px var(--shadow-medium);
-    min-width: 220px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-}
-
-.accessibility-options.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.accessibility-options h2 {
-    font-size: calc(1.1rem * var(--font-size-scale));
-    margin-bottom: 15px;
-    color: var(--text-dark);
-}
-
-.accessibility-btn {
-    width: 100%;
-    background-color: var(--background-light);
-    border: 1px solid var(--secondary-color);
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    font-family: 'Heebo', sans-serif;
-    font-size: calc(0.95rem * var(--font-size-scale));
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-}
-
-.accessibility-btn:hover {
-    background-color: var(--primary-color);
-    color: white;
-    transform: translateX(-3px);
-}
-
-.accessibility-btn:focus {
-    outline: 2px solid var(--text-dark);
-    outline-offset: 2px;
-}
-
-.accessibility-btn .icon {
+/* ---------- טיפוגרפיה ---------- */
+h1, h2, h3, h4 {
+    font-family: var(--font-display);
     font-weight: 700;
-    font-size: calc(1.2rem * var(--font-size-scale));
+    line-height: 1.2;
+    color: var(--ink);
+    text-wrap: balance;
 }
+h1 { font-size: clamp(2.25rem, 1.4rem + 3.6vw, 3.75rem); letter-spacing: -0.005em; }
+h2 { font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.6rem); }
+h3 { font-size: 1.3rem; line-height: 1.3; }
+p  { text-wrap: pretty; }
 
-.accessibility-link {
-    display: block;
-    text-align: center;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--secondary-color);
-    color: var(--primary-color);
-    font-size: calc(0.9rem * var(--font-size-scale));
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--sage-deep);
+    margin-bottom: 1rem;
 }
-
-/* ===============================================
-   כפתור וואטסאפ צף
-   =============================================== */
-.whatsapp-float {
-    position: fixed;
-    bottom: 100px;
-    left: 30px;
-    background-color: var(--whatsapp-green);
-    color: white;
-    width: 60px;
-    height: 60px;
+.eyebrow::before {
+    content: '';
+    width: 9px; height: 9px;
     border-radius: 50%;
-    display: flex;
+    background: var(--beet);
+    flex: none;
+}
+
+.lead {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+
+.section-title { margin-bottom: 0.75rem; }
+.section-head { max-width: 640px; margin-bottom: 2.5rem; }
+.section-head.center { margin-inline: auto; text-align: center; }
+.section-head.center .eyebrow { justify-content: center; }
+.section-head p { color: var(--ink-soft); font-size: 1.1rem; }
+
+/* ---------- מבנה ---------- */
+.container {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+.section { padding-block: clamp(3.5rem, 5rem + 2vw, 6.5rem); }
+.section.tint  { background: var(--sage-tint); }
+.section.paper { background: var(--paper); }
+
+/* ---------- כפתורים ---------- */
+.btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-    z-index: 9998;
-    transition: all 0.3s ease;
+    gap: 0.6rem;
+    min-height: 48px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out),
+                border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+                box-shadow var(--dur) var(--ease-out);
+    touch-action: manipulation;
+    white-space: nowrap;
 }
+.btn svg { width: 1.25em; height: 1.25em; flex: none; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+.btn-primary { background: var(--beet); color: #fff; box-shadow: 0 6px 18px var(--beet-glow); }
+.btn-primary:hover { background: var(--beet-deep); color: #fff; }
+
+.btn-ghost { background: transparent; color: var(--ink); border-color: rgba(42, 31, 29, 0.28); }
+.btn-ghost:hover { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+
+.btn-outline { background: transparent; color: var(--beet-deep); border-color: var(--beet); }
+.btn-outline:hover { background: var(--beet-tint); color: var(--beet-deep); }
+
+.btn-whatsapp { background: var(--whatsapp); color: #fff; font-weight: 700; font-size: 1.125rem; }
+.btn-whatsapp:hover { background: var(--whatsapp-hover); color: #fff; }
+
+.btn-lg { min-height: 56px; padding: 0.9rem 2rem; font-size: 1.125rem; }
+.btn-block { width: 100%; }
+
+/* ---------- דילוג לתוכן ---------- */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    right: 1rem;
+    z-index: 1000;
+    background: var(--ink);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: top var(--dur) var(--ease-out);
 }
+.skip-link:focus { top: 1rem; color: #fff; outline-color: var(--beet-tint); }
 
-.whatsapp-float:focus {
-    outline: 3px solid var(--text-dark);
-    outline-offset: 3px;
-}
-
-/* כפתור טלפון צף */
-.phone-float {
-    position: fixed;
-    bottom: 30px;
-    left: 20px;
-    background-color: #01ca91;
-    color: white;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(2, 66, 131, 0.4);
-    z-index: 9998;
-    transition: all 0.3s ease;
-}
-
-.phone-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
-}
-
-.phone-float:focus {
-    outline: 3px solid var(--text-dark);
-    outline-offset: 3px;
-}
-
-/* הצגת כפתור טלפון רק בתצוגת מובייל */
-@media (max-width: 768px) {
-    .phone-float {
-        display: flex;
-    }
-}
-
-/* ===============================================
-   תפריט ניווט
-   =============================================== */
-.navbar {
-    background-color: var(--background-white);
-    box-shadow: 0 2px 8px var(--shadow-light);
+/* ---------- כותרת עליונה ---------- */
+.site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
-    padding: 1rem 0;
-    transition: all 0.3s ease;
+    z-index: var(--z-header);
+    height: var(--header-h);
+    background: rgba(255, 255, 255, 0.94);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
 }
-
-.navbar.navbar-scrolled {
-    padding: 0.4rem 0;
-    box-shadow: 0 6px 20px var(--shadow-medium);
-    background-color: rgba(255, 255, 255, 0.95);
-}
-
-.navbar.navbar-scrolled .logo-image {
-    max-height: 60px;
-}
-
-.navbar.navbar-scrolled .nav-content {
-    gap: 0.5rem;
-}
-
-.navbar.navbar-scrolled .nav-links a {
-    font-size: 0.85rem;
-    padding: 0.3rem 0;
-}
-
-.nav-content {
+.header-inner {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    transition: gap 0.3s ease;
+    justify-content: space-between;
+    gap: 1.5rem;
 }
+.brand { display: inline-flex; align-items: center; flex: none; }
+.brand-logo { height: 54px; width: auto; }
 
-.logo {
+.site-nav {
     display: flex;
-    flex-direction: column;
-    text-decoration: none;
     align-items: center;
-    text-align: center;
-}
-
-.logo-image {
-    max-height: 120px;
-    width: auto;
-    object-fit: contain;
-    transition: max-height 0.3s ease;
-}
-
-.logo-text {
-    font-size: calc(1.8rem * var(--font-size-scale));
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.logo-subtitle {
-    font-size: calc(0.85rem * var(--font-size-scale));
-    color: var(--text-light);
-    font-weight: 400;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
     gap: 2rem;
+    flex: 1;
+    justify-content: flex-end;
 }
-
-.nav-links a {
-    color: var(--text-dark);
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin-inline-end: auto;
+}
+.nav-list a {
+    display: inline-block;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
     font-weight: 500;
-    font-size: calc(1rem * var(--font-size-scale));
-    padding: 0.5rem 0;
-    position: relative;
-    transition: all 0.3s ease;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
 }
+.nav-list a:hover { background: var(--sage-tint); color: var(--ink); }
+.nav-list a[aria-current="page"],
+.nav-list a[aria-current="true"] { background: var(--beet-tint); color: var(--beet-deep); font-weight: 600; }
 
-.nav-links a::after {
+.nav-toggle {
+    display: none;
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex: none;
+}
+.nav-toggle span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform var(--dur) var(--ease-out), opacity var(--dur) var(--ease-out);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(2.5rem, 4rem + 2vw, 6rem) clamp(3rem, 4rem + 2vw, 6rem);
+}
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+}
+.hero-copy h1 { margin-bottom: 1.25rem; }
+.hero-copy h1 em { font-style: normal; color: var(--beet-deep); }
+.hero-copy .lead { max-width: 34ch; margin-bottom: 2rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+
+.trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    list-style: none;
+    font-size: 0.95rem;
+    color: var(--sage-deep);
+    font-weight: 500;
+}
+.trust-row li { display: inline-flex; align-items: center; gap: 0.5rem; }
+.trust-row svg { width: 18px; height: 18px; flex: none; color: var(--beet); }
+
+.hero-visual {
+    position: relative;
+    max-width: 440px;
+    margin-inline: auto;
+    width: 100%;
+}
+.hero-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 18%;
+    border-radius: 58% 42% 55% 45% / 48% 52% 48% 52%;
+    box-shadow: var(--shadow-md);
+}
+.blob-bg {
+    position: absolute;
+    inset: -6% -10% -4% -6%;
+    background: var(--sage-tint);
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    transform: rotate(-6deg);
+}
+.blob-bg::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
+    right: -4%;
+    bottom: 6%;
+    width: 22%;
+    aspect-ratio: 1;
+    background: var(--beet-tint);
+    border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
 }
 
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-links a:hover {
-    color: var(--primary-color);
-}
-
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.hamburger {
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-dark);
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-/* ===============================================
-   Hero Section
-   =============================================== */
-.hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    padding: 120px 0 80px;
-    text-align: center;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero-title {
-    color: white;
-    font-size: calc(3rem * var(--font-size-scale));
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.hero-subtitle {
-    color: white;
-    font-size: calc(1.3rem * var(--font-size-scale));
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: white;
-    color: var(--primary-color);
-    padding: 16px 40px;
-    border-radius: 50px;
-    font-size: calc(1.1rem * var(--font-size-scale));
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    color: var(--accent-color);
-}
-
-/* ===============================================
-   About Section
-   =============================================== */
-.about-section {
-    padding: 80px 0;
-    background-color: var(--background-white);
-}
-
-.about-content {
+/* ---------- היכרות ---------- */
+.about-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 60px;
-    align-items: center;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
 }
+.about-text h2 { margin-bottom: 1.5rem; font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem); }
+.about-text p { color: var(--ink-soft); margin-bottom: 1.1rem; font-size: 1.08rem; }
+.about-text p:last-child { margin-bottom: 0; }
 
-.about-image {
-    text-align: center;
+.about-aside { display: grid; gap: 1.5rem; }
+.pull-quote {
+    position: relative;
+    padding: 1.75rem 1.75rem 1.75rem 1.5rem;
+    background: var(--paper);
+    border-radius: var(--radius);
+    border-inline-start: 4px solid var(--beet);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.5;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
 }
+.pull-quote footer { margin-top: 0.75rem; font-family: var(--font-body); font-size: 0.9rem; color: var(--sage-deep); }
 
-.about-image img {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 20px;
-    box-shadow: 0 8px 24px var(--shadow-light);
-    object-fit: cover;
-}
-
-.about-text h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-}
-
-.about-text p {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-    font-size: calc(1.05rem * var(--font-size-scale));
-}
-
-.credentials {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 2px solid var(--secondary-color);
-}
-
-.credential-item {
+.credentials { list-style: none; display: grid; gap: 0.6rem; }
+.credentials li {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    padding: 12px;
-    background-color: var(--background-light);
-    border-radius: 10px;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+.credentials svg {
+    width: 22px; height: 22px; flex: none;
+    color: var(--beet-deep);
 }
 
-.credential-icon {
-    font-size: calc(1.5rem * var(--font-size-scale));
-}
-
-/* ===============================================
-   Services Section
-   =============================================== */
-.services-section {
-    padding: 80px 0;
-    background-color: var(--background-light);
-}
-
-.section-title {
-    text-align: center;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: calc(2.5rem * var(--font-size-scale));
-}
-
-.section-subtitle {
-    text-align: center;
-    color: var(--text-light);
-    margin-bottom: 3rem;
-    font-size: calc(1.2rem * var(--font-size-scale));
-}
-
+/* ---------- שירותים ---------- */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
 }
-
 .service-card {
-    background-color: var(--background-white);
-    padding: 40px 30px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 4px 12px var(--shadow-light);
-    transition: all 0.3s ease;
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
 }
-
-.service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px var(--shadow-medium);
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--beet);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform var(--dur) var(--ease-out);
 }
-
+.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.service-card:hover::before { transform: scaleY(1); }
 .service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 25px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--beet-tint);
+    color: var(--beet-deep);
+    display: grid;
+    place-items: center;
+    margin-bottom: 1.1rem;
+}
+.service-icon svg { width: 26px; height: 26px; }
+.service-card h3 { margin-bottom: 0.5rem; }
+.service-card p { color: var(--ink-soft); font-size: 1rem; }
+
+/* ---------- איך זה עובד ---------- */
+.steps {
+    list-style: none;
+    display: grid;
+    gap: 1.5rem;
+    counter-reset: step;
+    position: relative;
+}
+.step {
+    position: relative;
+    padding-inline-start: 4rem;
+}
+.step-num {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    width: 48px; height: 48px;
     border-radius: 50%;
+    background: var(--beet);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 16px var(--beet-glow);
+}
+.step h3 { margin-bottom: 0.4rem; }
+.step p { color: var(--ink-soft); font-size: 1rem; }
+.step-note {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--beet-tint);
+    border-radius: var(--radius);
+    color: var(--ink);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.step-note p { margin: 0; font-weight: 500; }
+
+/* ---------- יצירת קשר ---------- */
+.contact-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 2.5rem;
+    align-items: center;
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: clamp(2rem, 3vw, 3.5rem);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+}
+.contact-card::after {
+    content: '';
+    position: absolute;
+    inset-inline-end: -80px;
+    top: -80px;
+    width: 260px; height: 260px;
+    background: var(--sage-tint);
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    z-index: 0;
+}
+.contact-card > * { position: relative; z-index: 1; }
+.contact-copy p { color: var(--ink-soft); font-size: 1.1rem; margin-bottom: 1.75rem; max-width: 40ch; }
+
+.contact-list { list-style: none; display: grid; gap: 0.75rem; }
+.contact-list li {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--cream);
 }
+.contact-list svg { width: 22px; height: 22px; color: var(--beet-deep); flex: none; }
+.contact-list a { font-weight: 600; color: var(--ink); text-decoration: none; }
+.contact-list a:hover { color: var(--beet-deep); text-decoration: underline; }
+.contact-list small { display: block; color: var(--sage-deep); font-size: 0.85rem; }
 
-.service-card h3 {
-    color: var(--text-dark);
+/* ---------- פוטר ---------- */
+.site-footer {
+    background: var(--sage-ink);
+    color: var(--cream);
+    padding-block: 3.5rem 1.5rem;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+.site-footer h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.9rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+}
+.site-footer p { color: #C9D3C6; font-size: 0.98rem; }
+.site-footer a { color: #fff; text-decoration: none; }
+.site-footer a:hover { color: #fff; text-decoration: underline; }
+.footer-brand-logo {
+    height: 64px; width: auto;
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 12px;
     margin-bottom: 1rem;
-    font-size: calc(1.3rem * var(--font-size-scale));
 }
-
-.service-card p {
-    color: var(--text-light);
-    font-size: calc(1rem * var(--font-size-scale));
-    line-height: 1.7;
+.footer-links ul, .footer-contact ul { list-style: none; display: grid; gap: 0.5rem; }
+.footer-contact li { display: flex; align-items: center; gap: 0.6rem; }
+.footer-contact svg { width: 18px; height: 18px; flex: none; color: #C9D3C6; }
+.social-links { display: flex; gap: 0.6rem; margin-top: 1rem; }
+.social-links a {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.10);
+    transition: background-color var(--dur) var(--ease-out);
 }
-
-/* ===============================================
-   Contact Section
-   =============================================== */
-.contact-section {
-    padding: 80px 0;
-    background-color: var(--background-white);
-    text-align: center;
+.social-links a:hover { background: rgba(255, 255, 255, 0.22); }
+.social-links svg { width: 22px; height: 22px; }
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.9rem;
 }
+.footer-bottom p, .footer-bottom a { color: #C9D3C6; }
 
-.contact-content h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: calc(2.5rem * var(--font-size-scale));
+/* ---------- כפתורים צפים ---------- */
+.float-stack {
+    position: fixed;
+    inset-inline-end: auto;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: var(--z-float);
+    display: grid;
+    gap: 0.6rem;
 }
-
-.contact-content p {
-    color: var(--text-light);
-    font-size: calc(1.2rem * var(--font-size-scale));
-    max-width: 700px;
-    margin: 0 auto 2.5rem;
+.float-btn {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
 }
+.float-btn:hover { transform: translateY(-2px) scale(1.04); color: #fff; }
+.float-btn svg { width: 28px; height: 28px; }
+.float-whatsapp { background: var(--whatsapp); }
+.float-phone { background: var(--beet); display: none; }
 
-.contact-whatsapp-btn {
+/* ---------- תפריט נגישות ---------- */
+.a11y {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: var(--z-a11y);
+}
+.a11y-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    background-color: var(--whatsapp-green);
-    color: white;
-    padding: 18px 40px;
-    border-radius: 50px;
-    font-size: calc(1.2rem * var(--font-size-scale));
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0 1.1rem 0 1rem;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
 }
-
-.contact-whatsapp-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    color: white;
+.a11y-toggle:hover { background: #000; transform: translateY(-1px); }
+.a11y-toggle svg { width: 22px; height: 22px; }
+.a11y-panel {
+    position: absolute;
+    bottom: calc(100% + 0.75rem);
+    right: 0;
+    width: min(280px, calc(100vw - 2rem));
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--line);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out), visibility 0s linear var(--dur);
 }
-
-.contact-info {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 2px solid var(--secondary-color);
+.a11y-panel.is-open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.a11y-panel h2 { font-family: var(--font-body); font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--ink-soft); }
+.a11y-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    text-align: right;
+    font-weight: 500;
+    transition: background-color var(--dur) var(--ease-out);
 }
-
-.contact-info p {
-    font-size: calc(1.1rem * var(--font-size-scale));
-    margin-bottom: 0.8rem;
-}
-
-.contact-info a {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-/* ===============================================
-   Footer
-   =============================================== */
-.footer {
-    background-color: #8FB5AA;
-    color: white;
-    padding: 50px 0 20px;
-}
-
-.footer-content {
+.a11y-btn:hover { background: var(--sage-tint); }
+.a11y-btn[aria-pressed="true"] { background: var(--beet-tint); color: var(--beet-deep); }
+.a11y-btn .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--cream);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 30px;
+    place-items: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex: none;
 }
-
-.footer-section h3 {
-    color: #FFF8F0;
-    margin-bottom: 1rem;
-    font-size: calc(1.2rem * var(--font-size-scale));
-}
-
-.footer-section p,
-.footer-section a {
-    color: #E8F2EF;
-    font-size: calc(0.95rem * var(--font-size-scale));
-    line-height: 1.8;
-}
-
-.footer-section a:hover {
-    color: #FFF8F0;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.8rem;
-}
-
-.footer-bottom {
+.a11y-btn .icon svg { width: 18px; height: 18px; }
+.a11y-link {
+    display: block;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
     text-align: center;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.92rem;
 }
 
-.footer-bottom p {
-    color: #E8F2EF;
-    font-size: calc(0.9rem * var(--font-size-scale));
-}
-
-/* ===============================================
-   ניגודיות גבוהה
-   =============================================== */
-body.high-contrast {
-    --primary-color: #000000;
-    --secondary-color: #FFFFFF;
-    --accent-color: #FFFF00;
-    --text-dark: #000000;
-    --text-light: #000000;
-    --background-light: #FFFFFF;
-    --background-white: #FFFFFF;
-}
-
-body.high-contrast .hero {
-    background: #000000;
-}
-
-body.high-contrast .service-card,
-body.high-contrast .navbar {
-    border: 2px solid #000000;
-}
-
-/* ===============================================
-   Responsive Design - Mobile
-   =============================================== */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1.5rem;
-    }
-
-    /* תפריט ניווט נייד */
-    .nav-content {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .logo {
-        align-items: flex-start;
-        text-align: right;
-    }
-
-    .logo-image {
-        max-height: 60px;
-    }
-
-    .mobile-menu-toggle {
-        display: flex;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 100%;
-        background-color: var(--background-white);
-        flex-direction: column;
-        gap: 0;
-        padding: 1rem 0;
-        box-shadow: 0 4px 8px var(--shadow-light);
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: all 0.3s ease;
-    }
-
-    .nav-links.active {
-        max-height: 500px;
-        opacity: 1;
-    }
-
-    .nav-links li {
-        padding: 0.8rem 2rem;
-        border-bottom: 1px solid var(--background-light);
-    }
-
-    .nav-links a::after {
-        display: none;
-    }
-
-    /* Hero */
-    .hero {
-        padding: 80px 0 60px;
-    }
-
-    .hero-title {
-        font-size: calc(2rem * var(--font-size-scale));
-    }
-
-    .hero-subtitle {
-        font-size: calc(1.1rem * var(--font-size-scale));
-    }
-
-    /* About */
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .about-image img {
-        max-width: 300px;
-    }
-
-    /* Services */
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-
-    /* תפריט נגישות */
-    .accessibility-menu {
-        top: 80px;
-        left: 10px;
-    }
-
-    .accessibility-toggle {
-        padding: 10px 16px;
-        font-size: calc(0.85rem * var(--font-size-scale));
-    }
-
-    /* וואטסאפ צף */
-    .whatsapp-float {
-        bottom: 100px;
-        left: 20px;
-        width: 55px;
-        height: 55px;
-    }
-
-    /* Footer */
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    html {
-        font-size: 14px;
-    }
-
-    .logo-image {
-        max-height: 50px;
-    }
-
-    .hero-title {
-        font-size: calc(1.8rem * var(--font-size-scale));
-    }
-
-    .section-title {
-        font-size: calc(2rem * var(--font-size-scale));
-    }
-
-    .cta-button,
-    .contact-whatsapp-btn {
-        padding: 14px 30px;
-        font-size: calc(1rem * var(--font-size-scale));
-    }
-}
-
-/* ===============================================
-   Recipes Page Styling
-   =============================================== */
-.recipes-hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    min-height: 40vh;
-}
-
-.recipes-section {
-    padding: 80px 0;
-    background-color: var(--background-white);
-}
-
-.recipes-intro {
+/* ---------- עמודים פנימיים ---------- */
+.page-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 3rem + 2vw, 5rem);
     text-align: center;
-    font-size: calc(1.1rem * var(--font-size-scale));
-    color: var(--text-light);
-    max-width: 800px;
-    margin: 0 auto 60px;
-    line-height: 1.8;
 }
+.page-hero .eyebrow { justify-content: center; }
+.page-hero h1 { margin-bottom: 1rem; }
+.page-hero .lead { max-width: 52ch; margin-inline: auto; }
+.page-hero::before, .page-hero::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    pointer-events: none;
+}
+.page-hero::before { width: 320px; height: 320px; background: var(--sage-tint); right: -120px; top: -120px; }
+.page-hero::after  { width: 200px; height: 200px; background: var(--beet-tint); left: -80px; bottom: -100px; }
 
+/* ---------- מתכונים ---------- */
 .recipes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
-
 .recipe-card {
-    background: var(--background-white);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px var(--shadow-light);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.recipe-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 24px var(--shadow-medium);
-}
-
-.recipe-image-placeholder {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    height: 200px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--background-white);
+    flex-direction: column;
+    background: var(--paper);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
 }
-
-.recipe-image-placeholder svg {
-    opacity: 0.7;
+.recipe-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.recipe-art {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--sage-tint);
+    display: grid;
+    place-items: center;
+    color: var(--sage-deep);
+    overflow: hidden;
 }
-
-.recipe-content {
-    padding: 24px;
+.recipe-art svg { width: 84px; height: 84px; }
+.recipe-art::after {
+    content: '';
+    position: absolute;
+    width: 170px; height: 170px;
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    background: rgba(255, 255, 255, 0.55);
+    z-index: 0;
 }
-
-.recipe-content h3 {
-    color: var(--text-dark);
-    font-size: calc(1.3rem * var(--font-size-scale));
-    margin-bottom: 12px;
+.recipe-art > * { position: relative; z-index: 1; }
+.recipe-tag {
+    position: absolute;
+    top: 0.85rem;
+    inset-inline-start: 0.85rem;
+    z-index: 2;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--beet-deep);
+    font-size: 0.82rem;
     font-weight: 600;
 }
-
-.recipe-description {
-    color: var(--text-light);
-    font-size: calc(1rem * var(--font-size-scale));
-    line-height: 1.7;
-    margin-bottom: 16px;
-}
-
+.recipe-body { padding: 1.25rem 1.25rem 1.25rem; display: flex; flex-direction: column; flex: 1; gap: 0.6rem; }
+.recipe-body h3 { font-size: 1.25rem; }
+.recipe-body p { color: var(--ink-soft); font-size: 0.98rem; flex: 1; }
 .recipe-meta {
     display: flex;
-    gap: 20px;
-    padding-top: 16px;
-    border-top: 1px solid var(--background-light);
-    font-size: calc(0.9rem * var(--font-size-scale));
-    color: var(--text-light);
+    gap: 1.25rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+    color: var(--sage-deep);
+    font-size: 0.9rem;
+    font-weight: 500;
 }
+.recipe-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.recipe-meta svg { width: 16px; height: 16px; }
+.recipe-cta { margin-top: 0.5rem; }
 
-.recipe-time,
-.recipe-servings {
-    display: flex;
+.cta-band {
+    margin-top: 3.5rem;
+    padding: clamp(2rem, 3vw, 3rem);
+    border-radius: var(--radius-lg);
+    background: var(--beet-tint);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 6px;
+    gap: 1.5rem 2.5rem;
 }
+.cta-band h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem); margin-bottom: 0.4rem; }
+.cta-band p { color: var(--ink-soft); }
 
-.recipes-cta {
-    text-align: center;
-    padding: 60px 30px;
-    background: linear-gradient(135deg, var(--background-light), var(--secondary-color));
-    border-radius: 16px;
-    margin-top: 40px;
-}
-
-.recipes-cta h2 {
-    color: var(--text-dark);
-    font-size: calc(2rem * var(--font-size-scale));
-    margin-bottom: 16px;
-}
-
-.recipes-cta p {
-    color: var(--text-light);
-    font-size: calc(1.1rem * var(--font-size-scale));
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* כפתור צפייה במתכון */
-.recipe-view-btn {
-    width: 100%;
-    padding: 12px 24px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: calc(1rem * var(--font-size-scale));
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 16px;
-}
-
-.recipe-view-btn:hover {
-    background: var(--text-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.recipe-view-btn:focus {
-    outline: 3px solid var(--accent-color);
-    outline-offset: 2px;
-}
-
-/* Recipe Modal Styling */
-.recipe-modal {
+/* ---------- מודאל מתכון ---------- */
+.modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10000;
+    inset: 0;
+    z-index: var(--z-modal);
     display: none;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    padding: 1rem;
 }
-
-.recipe-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-.recipe-modal-overlay {
+.modal.is-open { display: flex; }
+.modal-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(4px);
+    inset: 0;
+    background: rgba(42, 31, 29, 0.55);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
 }
-
-.recipe-modal-content {
+.modal-dialog {
     position: relative;
-    background: var(--background-white);
-    border-radius: 20px;
-    max-width: 900px;
-    max-height: 90vh;
-    width: 90%;
+    width: min(860px, 100%);
+    max-height: min(90dvh, 900px);
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    transform: scale(0.7);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    z-index: 10001;
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    animation: modal-in 260ms var(--ease-out);
 }
-
-.recipe-modal.active .recipe-modal-content {
-    transform: scale(1);
+@keyframes modal-in {
+    from { opacity: 0; transform: translateY(16px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
 }
-
-.recipe-modal-close {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 40px;
-    height: 40px;
-    background: var(--background-white);
-    border: none;
+.modal-close {
+    position: sticky;
+    top: 0.75rem;
+    inset-inline-start: 0.75rem;
+    float: left;
+    margin: 0.75rem;
+    width: 44px; height: 44px;
     border-radius: 50%;
-    cursor: pointer;
+    background: var(--paper);
+    color: var(--ink);
+    display: grid;
+    place-items: center;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    z-index: 2;
+}
+.modal-close:hover { background: var(--beet-tint); color: var(--beet-deep); }
+.modal-close svg { width: 20px; height: 20px; }
+.modal-body { padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 2.5rem; clear: both; }
+.modal-head { text-align: center; padding-bottom: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+.modal-head h2 { margin-bottom: 0.6rem; }
+.modal-meta {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    z-index: 10002;
-}
-
-.recipe-modal-close:hover {
-    background: var(--accent-color);
-    color: white;
-    transform: rotate(90deg);
-}
-
-.recipe-modal-close:focus {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-.recipe-modal-close svg {
-    width: 20px;
-    height: 20px;
-}
-
-.recipe-modal-body {
-    padding: 40px;
-}
-
-.modal-recipe-header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--background-light);
-}
-
-.modal-recipe-header h2 {
-    font-size: calc(2.2rem * var(--font-size-scale));
-    color: var(--text-dark);
-    margin-bottom: 12px;
-}
-
-.modal-recipe-meta {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    font-size: calc(1rem * var(--font-size-scale));
-    color: var(--text-light);
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+    color: var(--sage-deep);
+    font-weight: 500;
+    font-size: 0.95rem;
 }
-
-.modal-recipe-meta span {
+.modal-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.modal-meta svg { width: 18px; height: 18px; }
+.modal-intro { text-align: center; color: var(--ink-soft); max-width: 60ch; margin: 0 auto 2rem; }
+.modal-section { margin-bottom: 2rem; }
+.modal-section h3 { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem; }
+.modal-section h3::before { content: ''; width: 4px; height: 1.2em; border-radius: 2px; background: var(--beet); }
+.ingredients, .instructions { list-style: none; display: grid; gap: 0.5rem; }
+.ingredients li {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
 }
-
-.modal-recipe-intro {
-    font-size: calc(1.1rem * var(--font-size-scale));
-    color: var(--text-light);
-    line-height: 1.8;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.modal-recipe-section {
-    margin-bottom: 30px;
-}
-
-.modal-recipe-section h3 {
-    font-size: calc(1.5rem * var(--font-size-scale));
-    color: var(--primary-color);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.modal-recipe-section h3::before {
+.ingredients li::before {
     content: '';
-    width: 4px;
-    height: 24px;
-    background: var(--primary-color);
-    border-radius: 2px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sage-deep);
+    flex: none;
 }
-
-.modal-ingredients-list,
-.modal-instructions-list {
-    list-style: none;
-    padding: 0;
-}
-
-.modal-ingredients-list li {
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    background: var(--background-light);
-    border-radius: 8px;
-    font-size: calc(1rem * var(--font-size-scale));
-    color: var(--text-dark);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.modal-ingredients-list li::before {
-    content: '✓';
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-.modal-instructions-list li {
-    padding: 16px;
-    padding-right: 65px;
-    margin-bottom: 12px;
-    background: var(--background-light);
-    border-radius: 8px;
-    font-size: calc(1rem * var(--font-size-scale));
-    color: var(--text-dark);
-    line-height: 1.7;
+.instructions { counter-reset: steps; }
+.instructions li {
+    counter-increment: steps;
     position: relative;
-    counter-increment: step-counter;
-    min-height: 60px;
+    padding: 0.85rem 3.4rem 0.85rem 1rem;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+    min-height: 56px;
     display: flex;
     align-items: center;
 }
-
-.modal-instructions-list {
-    counter-reset: step-counter;
-}
-
-.modal-instructions-list li::before {
-    content: counter(step-counter);
+.instructions li::before {
+    content: counter(steps);
     position: absolute;
-    right: 12px;
+    inset-inline-start: 0.85rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 34px;
-    height: 34px;
-    background: var(--primary-color);
-    color: white;
+    width: 32px; height: 32px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1em;
-    flex-shrink: 0;
-}
-
-.modal-nutrition-info {
-    background: linear-gradient(135deg, var(--background-light), var(--secondary-color));
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 30px;
-}
-
-.modal-nutrition-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 16px;
-    margin-top: 16px;
-}
-
-.modal-nutrition-item {
-    text-align: center;
-    padding: 12px;
-    background: white;
-    border-radius: 8px;
-}
-
-.modal-nutrition-value {
-    font-size: calc(1.3rem * var(--font-size-scale));
+    background: var(--beet);
+    color: #fff;
     font-weight: 700;
-    color: var(--primary-color);
-    display: block;
-}
-
-.modal-nutrition-label {
-    font-size: calc(0.85rem * var(--font-size-scale));
-    color: var(--text-light);
-    margin-top: 4px;
-}
-
-/* Responsive modal */
-@media (max-width: 768px) {
-    .recipe-modal-content {
-        width: 95%;
-        max-height: 95vh;
-        border-radius: 12px;
-    }
-
-    .recipe-modal-body {
-        padding: 30px 20px;
-    }
-
-    .modal-recipe-header h2 {
-        font-size: calc(1.8rem * var(--font-size-scale));
-    }
-
-    .modal-recipe-meta {
-        gap: 16px;
-    }
-
-    .modal-nutrition-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* ===============================================
-   Blog Page Styling
-   =============================================== */
-.blog-section {
-    padding: 80px 0;
-    background-color: var(--background-white);
-}
-
-.blog-intro {
-    text-align: center;
-    font-size: calc(1.1rem * var(--font-size-scale));
-    color: var(--text-light);
-    max-width: 800px;
-    margin: 0 auto 60px;
-    line-height: 1.8;
-}
-
-/* Instagram Grid */
-.instagram-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 80px;
+    place-items: center;
+    font-size: 0.95rem;
 }
-
-/* Instagram Post Card */
-.instagram-post {
-    background: var(--background-white);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px var(--shadow-light);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
+.nutrition {
+    background: var(--sage-tint);
+    border-radius: var(--radius);
+    padding: 1.25rem;
 }
+.nutrition h3 { text-align: center; justify-content: center; margin-bottom: 1rem; }
+.nutrition h3::before { display: none; }
+.nutrition-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.75rem; }
+.nutrition-item { background: var(--paper); border-radius: var(--radius-sm); padding: 0.75rem; text-align: center; }
+.nutrition-value { display: block; font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--beet-deep); font-variant-numeric: tabular-nums; }
+.nutrition-label { font-size: 0.85rem; color: var(--sage-deep); }
 
-.instagram-post:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 24px var(--shadow-medium);
+/* ---------- בלוג / אינסטגרם ---------- */
+.ig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
 }
-
-.instagram-post-image {
+.ig-grid .instagram-media {
+    margin: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 540px !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+.ig-empty {
+    grid-column: 1 / -1;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-}
-
-.instagram-post-content {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.instagram-post-caption {
-    color: var(--text-dark);
-    font-size: calc(1rem * var(--font-size-scale));
-    line-height: 1.7;
-    margin-bottom: 16px;
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.instagram-post-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 16px;
-    border-top: 1px solid var(--background-light);
-    font-size: calc(0.9rem * var(--font-size-scale));
-    color: var(--text-light);
-}
-
-.instagram-post-date {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.instagram-post-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--primary-color);
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.instagram-post-link:hover {
-    color: var(--text-dark);
-    gap: 10px;
-}
-
-.instagram-post-link svg {
-    width: 18px;
-    height: 18px;
-}
-
-/* Loading State */
-.instagram-loading {
-    grid-column: 1 / -1;
+    max-width: 640px;
+    margin-inline: auto;
     text-align: center;
-    padding: 80px 20px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    box-shadow: var(--shadow-sm);
 }
-
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid var(--background-light);
-    border-top: 4px solid var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 20px;
+.ig-empty-icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 1.25rem;
+    border-radius: 18px;
+    background: var(--beet-tint);
+    color: var(--beet-deep);
+    display: grid;
+    place-items: center;
 }
+.ig-empty-icon svg { width: 30px; height: 30px; }
+.ig-empty h2 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+.ig-empty p { color: var(--ink-soft); margin-bottom: 1.5rem; }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* ---------- הצהרת נגישות ---------- */
+.statement {
+    max-width: 780px;
+    margin-inline: auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+    box-shadow: var(--shadow-sm);
 }
-
-.instagram-loading p {
-    color: var(--text-light);
-    font-size: calc(1rem * var(--font-size-scale));
+.statement h2 { font-size: 1.6rem; margin: 2.25rem 0 0.75rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--sage-tint); }
+.statement h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; color: var(--beet-deep); }
+.statement p { color: var(--ink-soft); margin-bottom: 1rem; }
+.statement ul { padding-inline-start: 1.25rem; margin-bottom: 1rem; color: var(--ink-soft); }
+.statement li { margin-bottom: 0.4rem; }
+.statement strong { color: var(--ink); }
+.contact-box {
+    background: var(--beet-tint);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 2rem 0;
 }
+.contact-box h3 { margin-top: 0; }
+.contact-box ul { list-style: none; padding: 0; }
+.update-date { font-size: 0.9rem; color: var(--sage-deep); margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
 
-/* Error State */
-.instagram-error {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 80px 20px;
-    background: var(--background-light);
-    border-radius: 16px;
+/* ---------- אנימציית חשיפה ---------- */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
 }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal[data-delay="1"] { transition-delay: 80ms; }
+.js .reveal[data-delay="2"] { transition-delay: 160ms; }
+.js .reveal[data-delay="3"] { transition-delay: 240ms; }
 
-.instagram-error svg {
-    color: var(--accent-color);
-    margin-bottom: 20px;
+/* ---------- מצבי נגישות ---------- */
+body.underline-links a { text-decoration: underline; }
+body.high-contrast {
+    --cream: #FFFFFF;
+    --paper: #FFFFFF;
+    --ink: #000000;
+    --ink-soft: #000000;
+    --line: #000000;
+    --beet: #7A0030;
+    --beet-deep: #7A0030;
+    --beet-tint: #FFFFFF;
+    --beet-glow: transparent;
+    --sage: #0B3D2E;
+    --sage-deep: #0B3D2E;
+    --sage-tint: #FFFFFF;
+    --sage-ink: #000000;
+    --whatsapp: #004D40;
+    --whatsapp-hover: #00332A;
+    --shadow-sm: none; --shadow-md: none; --shadow-lg: 0 0 0 2px #000;
 }
+body.high-contrast .service-card,
+body.high-contrast .recipe-card,
+body.high-contrast .credentials li,
+body.high-contrast .contact-card,
+body.high-contrast .pull-quote,
+body.high-contrast .contact-list li,
+body.high-contrast .ingredients li,
+body.high-contrast .instructions li,
+body.high-contrast .nutrition-item,
+body.high-contrast .statement,
+body.high-contrast .ig-empty { border: 2px solid #000; }
+body.high-contrast .site-header { background: #fff; border-bottom: 2px solid #000; }
+body.high-contrast .blob-bg, body.high-contrast .contact-card::after,
+body.high-contrast .page-hero::before, body.high-contrast .page-hero::after { display: none; }
+body.high-contrast .hero-photo { border: 2px solid #000; }
+body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: #fff; }
 
-.instagram-error h3 {
-    color: var(--text-dark);
-    font-size: calc(1.5rem * var(--font-size-scale));
-    margin-bottom: 12px;
-}
-
-.instagram-error p {
-    color: var(--text-light);
-    font-size: calc(1rem * var(--font-size-scale));
-    margin-bottom: 30px;
-}
-
-.instagram-link-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 30px;
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: white;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.instagram-link-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.instagram-link-btn svg {
-    width: 24px;
-    height: 24px;
-}
-
-/* Blog CTA */
-.blog-cta {
-    text-align: center;
-    padding: 60px 30px;
-    background: linear-gradient(135deg, var(--background-light), var(--secondary-color));
-    border-radius: 16px;
-    margin-top: 40px;
-}
-
-.blog-cta h2 {
-    color: var(--text-dark);
-    font-size: calc(2rem * var(--font-size-scale));
-    margin-bottom: 16px;
-}
-
-.blog-cta p {
-    color: var(--text-light);
-    font-size: calc(1.1rem * var(--font-size-scale));
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.instagram-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 36px;
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: white;
-    border-radius: 10px;
-    font-size: calc(1.1rem * var(--font-size-scale));
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.instagram-cta-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-.instagram-cta-btn svg {
-    width: 24px;
-    height: 24px;
-}
-
-/* Responsive Blog */
-@media (max-width: 768px) {
-    .instagram-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+/* ---------- תנועה מופחתת ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
+    .js .reveal { opacity: 1; transform: none; }
+}
 
-    .blog-cta h2 {
-        font-size: calc(1.6rem * var(--font-size-scale));
+/* ---------- רספונסיב ---------- */
+@media (min-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+    .step { padding-inline-start: 0; padding-top: 4rem; }
+    .step-num { top: 0; inset-inline-start: 0; }
+    .steps::before {
+        content: '';
+        position: absolute;
+        top: 24px;
+        inset-inline: 24px;
+        height: 2px;
+        background: linear-gradient(to left, var(--beet-tint), var(--sage) 50%, var(--beet-tint));
     }
 }
 
-/* ===============================================
-   אנימציות
-   =============================================== */
-@keyframes fadeInUp {
-    from {
+@media (max-width: 1023px) {
+    :root { --header-h: 68px; }
+    .brand-logo { height: 48px; }
+    .nav-toggle { display: flex; }
+    .site-nav {
+        position: fixed;
+        top: var(--header-h);
+        inset-inline: 0;
+        z-index: var(--z-nav);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 1rem var(--gutter) 1.5rem;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        box-shadow: var(--shadow-md);
         opacity: 0;
-        transform: translateY(30px);
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out), visibility 0s linear var(--dur);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    .site-nav.is-open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+    .nav-list { flex-direction: column; align-items: stretch; gap: 0.25rem; margin: 0; }
+    .nav-list a { display: block; padding: 0.85rem 1rem; font-size: 1.1rem; border-radius: var(--radius-sm); }
+    .nav-cta { width: 100%; }
+    body.nav-open { overflow: hidden; }
+    body.nav-open .float-stack, body.nav-open .a11y { visibility: hidden; }
+
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-visual { max-width: 340px; }
+    .hero-copy { text-align: center; }
+    .hero-copy .lead { margin-inline: auto; }
+    .hero-actions, .trust-row { justify-content: center; }
+    .hero-copy .eyebrow { justify-content: center; }
+
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-card { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
-.service-card,
-.about-content,
-.contact-content,
-.recipe-card {
-    animation: fadeInUp 0.6s ease-out;
+@media (max-width: 640px) {
+    body { font-size: 1rem; }
+    .hero { padding-top: 2rem; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions .btn { width: 100%; }
+    .services-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .float-phone { display: grid; }
+    .a11y-toggle span { display: none; }
+    .a11y-toggle { width: 52px; padding: 0; justify-content: center; }
+    .cta-band { grid-template-columns: 1fr; }
+    .cta-band .btn { width: 100%; }
+    .nutrition-grid { grid-template-columns: repeat(2, 1fr); }
+    .modal { padding: 0.5rem; }
+    .modal-dialog { border-radius: var(--radius); }
 }
 
-/* ===============================================
-   הדפסה
-   =============================================== */
+/* ---------- הדפסה ---------- */
 @media print {
-    .navbar,
-    .accessibility-menu,
-    .whatsapp-float,
-    .footer {
-        display: none;
-    }
+    .site-header, .site-footer, .float-stack, .a11y, .nav-toggle, .hero-visual, .cta-band { display: none !important; }
+    body { background: #fff; color: #000; }
+    a { color: #000; }
 }

@@ -1,285 +1,258 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="מתכונים בריאים ומזינים מאת ויקי - דיאטנית קלינית מוסמכת">
-    <title>מתכונים | ויקי - דיאטנית קלינית</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>מתכונים | ויקטוריה גרמן – דיאטנית קלינית</title>
+    <meta name="description" content="מתכונים פשוטים, טעימים ומזינים מאת ויקטוריה גרמן, דיאטנית קלינית: ארוחות בוקר, סלטים, מרקים, חטיפים ומשקאות לאכילה מאוזנת.">
+    <link rel="canonical" href="https://nourishvik.com/recipes.html">
+    <meta name="theme-color" content="#FBF7F2">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:site_name" content="ויקטוריה גרמן – דיאטנית קלינית">
+    <meta property="og:title" content="מתכונים בריאים ומזינים | ויקטוריה גרמן">
+    <meta property="og:description" content="מתכונים פשוטים וטעימים לאכילה מאוזנת – מארוחת הבוקר ועד החטיף.">
+    <meta property="og:url" content="https://nourishvik.com/recipes.html">
+    <meta property="og:image" content="https://nourishvik.com/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 </head>
 <body>
-    <!-- תפריט נגישות -->
-    <div id="accessibility-menu" class="accessibility-menu" role="region" aria-label="תפריט נגישות">
-        <button id="accessibility-toggle" class="accessibility-toggle" aria-label="פתח תפריט נגישות" aria-expanded="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <!-- סמל נגישות סטנדרטי - אדם בעיגול -->
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                <circle cx="12" cy="8" r="2" fill="white"/>
-            </svg>
-            <span>נגישות</span>
-        </button>
-        <div id="accessibility-options" class="accessibility-options" aria-hidden="true">
-            <h2>אפשרויות נגישות</h2>
-            <button class="accessibility-btn" data-action="increase-font" aria-label="הגדל גופן">
-                <span class="icon">A+</span>
-                <span>הגדל גופן</span>
-            </button>
-            <button class="accessibility-btn" data-action="decrease-font" aria-label="הקטן גופן">
-                <span class="icon">A-</span>
-                <span>הקטן גופן</span>
-            </button>
-            <button class="accessibility-btn" data-action="high-contrast" aria-label="ניגודיות גבוהה">
-                <span class="icon">◐</span>
-                <span>ניגודיות גבוהה</span>
-            </button>
-            <button class="accessibility-btn" data-action="reset" aria-label="אפס הגדרות">
-                <span class="icon">↻</span>
-                <span>אפס הגדרות</span>
-            </button>
-            <a href="accessibility-statement.html" class="accessibility-link">הצהרת נגישות</a>
-        </div>
-    </div>
+    <a class="skip-link" href="#main">דילוג לתוכן הראשי</a>
 
-    <!-- כפתור וואטסאפ צף -->
-    <a href="https://wa.me/972542141321?text=היי%20ויקטוריה,%20אשמח%20לשמוע%20עוד%20על%20השירותים%20שלך"
-       class="whatsapp-float"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="פנה אלינו בוואטסאפ">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
-            <path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/>
-        </svg>
-    </a>
-
-    <!-- כפתור טלפון צף -->
-    <a href="tel:+972542141321"
-       class="phone-float"
-       aria-label="התקשר אלינו">
-        <svg width="30" height="30" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-            <path d="M25.36 20.12l-3.52-1.52c-.48-.2-1.04-.08-1.4.32l-1.56 1.56c-2.84-1.44-5.16-3.76-6.6-6.6l1.56-1.56c.4-.36.52-.92.32-1.4l-1.52-3.52c-.24-.56-.84-.88-1.44-.76l-3.2.64c-.6.12-1.04.64-1.04 1.24C6.96 18.28 13.72 25.04 22.48 25.04c.6 0 1.12-.44 1.24-1.04l.64-3.2c.12-.6-.2-1.2-.76-1.44-.16-.08-.16-.08-.24-.24z"/>
-        </svg>
-    </a>
-
-    <!-- תפריט ניווט -->
-    <nav class="navbar" role="navigation" aria-label="תפריט ראשי">
-        <div class="container">
-            <div class="nav-content">
-                <a href="index.html" class="logo" aria-label="דף הבית - ויקי דיאטנית קלינית">
-                    <img src="images/logo.png" alt="ויקי - דיאטנית קלינית" class="logo-image">
-                </a>
-                <button class="mobile-menu-toggle" aria-label="פתח תפריט" aria-expanded="false">
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                    <span class="hamburger"></span>
-                </button>
-                <ul class="nav-links" role="menubar">
-                    <li role="none"><a href="index.html" role="menuitem">דף הבית</a></li>
-                    <li role="none"><a href="index.html#about" role="menuitem">אודות</a></li>
-                    <li role="none"><a href="index.html#services" role="menuitem">שירותים</a></li>
-                    <li role="none"><a href="recipes.html" role="menuitem" aria-current="page">מתכונים</a></li>
-                    <li role="none"><a href="blog.html" role="menuitem">בלוג נושם</a></li>
-                    <li role="none"><a href="index.html#contact" role="menuitem">יצירת קשר</a></li>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand" aria-label="ויקטוריה גרמן – דיאטנית קלינית, דף הבית">
+                <img src="images/logo.png" alt="" width="249" height="168" class="brand-logo">
+            </a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="פתיחת תפריט">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="ניווט ראשי">
+                <ul class="nav-list">
+                    <li><a href="index.html#about">היכרות</a></li>
+                    <li><a href="index.html#services">שירותים</a></li>
+                    <li><a href="index.html#process">איך זה עובד</a></li>
+                    <li><a href="recipes.html" aria-current="page">מתכונים</a></li>
+                    <li><a href="blog.html">בלוג נושם</a></li>
+                    <li><a href="index.html#contact">יצירת קשר</a></li>
                 </ul>
-            </div>
+                <a href="https://wa.me/972542141321?text=%D7%94%D7%99%D7%99%20%D7%95%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA"
+                   class="btn btn-primary nav-cta" target="_blank" rel="noopener noreferrer">לקביעת שיחה</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Recipes Hero Section -->
-    <section class="hero recipes-hero" role="banner">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">מתכונים בריאים ומזינים</h1>
-                <p class="hero-subtitle">מתכונים פשוטים וטעימים לאכילה מאוזנת ובריאה</p>
+    <main id="main">
+        <section class="page-hero" aria-labelledby="page-title">
+            <div class="container">
+                <p class="eyebrow">מתכונים</p>
+                <h1 id="page-title">פשוט, טעים, ומזין באמת</h1>
+                <p class="lead">מתכונים שמתאימים לשגרה אמיתית: מעט מצרכים, זמן הכנה קצר, וערכים תזונתיים שאפשר לסמוך עליהם. לכל מתכון יש רשימת מצרכים, שלבי הכנה וערכים למנה.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Recipes Section -->
-    <section class="recipes-section">
-        <div class="container">
-            <p class="recipes-intro">כאן תמצאו מתכונים בריאים ומזינים שמתאימים לאורח חיים מאוזן. כל המתכונים נבחרו בקפידה ומותאמים לתפריט בריא ומגוון.</p>
+        <section class="section paper" aria-label="רשימת מתכונים">
+            <div class="container">
+                <div class="recipes-grid">
 
-            <div class="recipes-grid">
-                <!-- Recipe Card 1 -->
-                <article class="recipe-card" data-recipe="1">
-                    <div class="recipe-image-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/>
-                            <path d="M7 2v20"/>
-                            <path d="M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
-                        </svg>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>קערת בוקר מזינה</h3>
-                        <p class="recipe-description">קערת שיבולת שועל עם פירות טריים, אגוזים וקינמון - ארוחת בוקר מושלמת המספקת אנרגיה לאורך כל הבוקר.</p>
-                        <div class="recipe-meta">
-                            <span class="recipe-time">⏱️ 10 דקות</span>
-                            <span class="recipe-servings">👥 2 מנות</span>
+                    <article class="recipe-card reveal" data-recipe="1" aria-labelledby="r1">
+                        <div class="recipe-art" aria-hidden="true">
+                            <span class="recipe-tag">ארוחת בוקר</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16c0 4.5-3.2 8-8 8s-8-3.5-8-8z"/><path d="M6 12c0-1 .5-2 2-2h8c1.5 0 2 1 2 2"/><path d="M9.5 7c0-1.5 1-1.5 1-3M14 7c0-1.5 1-1.5 1-3"/></svg>
                         </div>
-                        <button class="recipe-view-btn" aria-label="צפה במתכון המלא">צפה במתכון המלא</button>
-                    </div>
-                </article>
-
-                <!-- Recipe Card 2 -->
-                <article class="recipe-card" data-recipe="2">
-                    <div class="recipe-image-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>סלט קינואה צבעוני</h3>
-                        <p class="recipe-description">קינואה עם ירקות צבעוניים, עגבניות שרי, מלפפון, גזר ורוטב לימון טרי - ארוחה קלה ומשביעה.</p>
-                        <div class="recipe-meta">
-                            <span class="recipe-time">⏱️ 25 דקות</span>
-                            <span class="recipe-servings">👥 4 מנות</span>
+                        <div class="recipe-body">
+                            <h3 id="r1">קערת בוקר מזינה</h3>
+                            <p>שיבולת שועל עם בננה, אגוזי מלך וקינמון – ארוחת בוקר חמה שמחזיקה עד הצהריים.</p>
+                            <div class="recipe-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>10 דקות</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>2 מנות</span>
+                            </div>
+                            <button class="btn btn-outline btn-block recipe-cta" type="button" aria-label="למתכון המלא: קערת בוקר מזינה">למתכון המלא</button>
                         </div>
-                        <button class="recipe-view-btn" aria-label="צפה במתכון המלא">צפה במתכון המלא</button>
-                    </div>
-                </article>
+                    </article>
 
-                <!-- Recipe Card 3 -->
-                <article class="recipe-card" data-recipe="3">
-                    <div class="recipe-image-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <circle cx="12" cy="12" r="6"/>
-                            <circle cx="12" cy="12" r="2"/>
-                        </svg>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>חביתת ירקות בתנור</h3>
-                        <p class="recipe-description">חביתה אפויה עם תרד, בצל, פלפלים ועגבניות - עשירה בחלבון וירקות, מושלמת לארוחת צהריים או ערב.</p>
-                        <div class="recipe-meta">
-                            <span class="recipe-time">⏱️ 35 דקות</span>
-                            <span class="recipe-servings">👥 6 מנות</span>
+                    <article class="recipe-card reveal" data-recipe="2" data-delay="1" aria-labelledby="r2">
+                        <div class="recipe-art" aria-hidden="true">
+                            <span class="recipe-tag">ארוחה</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16c0 4.5-3.2 8-8 8s-8-3.5-8-8z"/><path d="M8.5 12c-.5-4 2-7.5 7.5-8-.5 4-2.5 6.5-7.5 8z"/><path d="M11 9.5c1-1 2-1.8 3.5-2.5"/><circle cx="7.5" cy="9.5" r="1.75"/></svg>
                         </div>
-                        <button class="recipe-view-btn" aria-label="צפה במתכון המלא">צפה במתכון המלא</button>
-                    </div>
-                </article>
+                        <div class="recipe-body">
+                            <h3 id="r2">סלט קינואה צבעוני</h3>
+                            <p>קינואה עם ירקות טריים, בצל סגול ורוטב לימון ושמן זית – ארוחה קלה שמשביעה.</p>
+                            <div class="recipe-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>25 דקות</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>4 מנות</span>
+                            </div>
+                            <button class="btn btn-outline btn-block recipe-cta" type="button" aria-label="למתכון המלא: סלט קינואה צבעוני">למתכון המלא</button>
+                        </div>
+                    </article>
 
-                <!-- Recipe Card 4 -->
-                <article class="recipe-card" data-recipe="4">
-                    <div class="recipe-image-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                        </svg>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>חטיף אנרגיה טבעי</h3>
-                        <p class="recipe-description">כדורי תמרים ושקדים עם קקאו - חטיף בריא ומתוק טבעי, מושלם לאנרגיה מהירה לפני אימון.</p>
-                        <div class="recipe-meta">
-                            <span class="recipe-time">⏱️ 15 דקות</span>
-                            <span class="recipe-servings">👥 12 כדורים</span>
+                    <article class="recipe-card reveal" data-recipe="3" data-delay="2" aria-labelledby="r3">
+                        <div class="recipe-art" aria-hidden="true">
+                            <span class="recipe-tag">ארוחה</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="13" r="7"/><path d="M17.5 13H22"/><path d="M10.5 13l4.5-5.4M10.5 13l6.5 2.6"/><circle cx="8" cy="11" r=".6" fill="currentColor"/><circle cx="12" cy="16" r=".6" fill="currentColor"/></svg>
                         </div>
-                        <button class="recipe-view-btn" aria-label="צפה במתכון המלא">צפה במתכון המלא</button>
-                    </div>
-                </article>
+                        <div class="recipe-body">
+                            <h3 id="r3">חביתת ירקות בתנור</h3>
+                            <p>חביתה אפויה עם תרד, פלפלים, עגבניות וגבינה לבנה – עשירה בחלבון ומתאימה לכל המשפחה.</p>
+                            <div class="recipe-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>35 דקות</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>6 מנות</span>
+                            </div>
+                            <button class="btn btn-outline btn-block recipe-cta" type="button" aria-label="למתכון המלא: חביתת ירקות בתנור">למתכון המלא</button>
+                        </div>
+                    </article>
 
-                <!-- Recipe Card 5 -->
-                <article class="recipe-card" data-recipe="5">
-                    <div class="recipe-image-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 8h1a4 4 0 010 8h-1"/>
-                            <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
-                            <line x1="6" y1="1" x2="6" y2="4"/>
-                            <line x1="10" y1="1" x2="10" y2="4"/>
-                            <line x1="14" y1="1" x2="14" y2="4"/>
-                        </svg>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>מרק ירקות חורפי</h3>
-                        <p class="recipe-description">מרק עשיר בירקות עונתיים, עדשים וירקות שורש - מחמם, מזין ומלא בטעם.</p>
-                        <div class="recipe-meta">
-                            <span class="recipe-time">⏱️ 45 דקות</span>
-                            <span class="recipe-servings">👥 6 מנות</span>
+                    <article class="recipe-card reveal" data-recipe="4" aria-labelledby="r4">
+                        <div class="recipe-art" aria-hidden="true">
+                            <span class="recipe-tag">חטיף</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15.5" r="3.75"/><circle cx="16" cy="15.5" r="3.75"/><circle cx="12" cy="8.5" r="3.75"/><path d="M10.5 7.5c.5-.5 1-.8 1.8-.9"/></svg>
                         </div>
-                        <button class="recipe-view-btn" aria-label="צפה במתכון המלא">צפה במתכון המלא</button>
-                    </div>
-                </article>
+                        <div class="recipe-body">
+                            <h3 id="r4">כדורי אנרגיה טבעיים</h3>
+                            <p>תמרים, שקדים וקקאו – חטיף מתוק בלי סוכר מוסף, מושלם לפני אימון או ליד הקפה.</p>
+                            <div class="recipe-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>15 דקות</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>12 כדורים</span>
+                            </div>
+                            <button class="btn btn-outline btn-block recipe-cta" type="button" aria-label="למתכון המלא: כדורי אנרגיה טבעיים">למתכון המלא</button>
+                        </div>
+                    </article>
 
-                <!-- Recipe Card 6 -->
-                <article class="recipe-card" data-recipe="6">
-                    <div class="recipe-image-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <div class="recipe-content">
-                        <h3>סמוזי ירוק מרענן</h3>
-                        <p class="recipe-description">שילוב של תרד, בננה, אבוקדו ומשקאות צמחיים - משקה ירוק מלא בויטמינים ומינרלים.</p>
-                        <div class="recipe-meta">
-                            <span class="recipe-time">⏱️ 5 דקות</span>
-                            <span class="recipe-servings">👥 2 מנות</span>
+                    <article class="recipe-card reveal" data-recipe="5" data-delay="1" aria-labelledby="r5">
+                        <div class="recipe-art" aria-hidden="true">
+                            <span class="recipe-tag">ארוחה</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16v5a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6z"/><path d="M2 12.5h2M20 12.5h2"/><path d="M9.5 7c0-1.5 1-1.5 1-3M14 7c0-1.5 1-1.5 1-3"/></svg>
                         </div>
-                        <button class="recipe-view-btn" aria-label="צפה במתכון המלא">צפה במתכון המלא</button>
+                        <div class="recipe-body">
+                            <h3 id="r5">מרק ירקות חורפי</h3>
+                            <p>ירקות שורש, עדשים כתומות וכורכום – מרק מחמם ומשביע לערבים קרים.</p>
+                            <div class="recipe-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>45 דקות</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>6 מנות</span>
+                            </div>
+                            <button class="btn btn-outline btn-block recipe-cta" type="button" aria-label="למתכון המלא: מרק ירקות חורפי">למתכון המלא</button>
+                        </div>
+                    </article>
+
+                    <article class="recipe-card reveal" data-recipe="6" data-delay="2" aria-labelledby="r6">
+                        <div class="recipe-art" aria-hidden="true">
+                            <span class="recipe-tag">משקה</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l-1.4 15.2a1 1 0 0 1-1 .8H9.4a1 1 0 0 1-1-.8z"/><path d="M8 11c1.5-.8 3-.8 4.5 0s3 .8 4 0"/><path d="M13 4l4-2.5"/></svg>
+                        </div>
+                        <div class="recipe-body">
+                            <h3 id="r6">סמוזי ירוק מרענן</h3>
+                            <p>תרד, בננה קפואה, אבוקדו ומשקה שקדים – משקה קרמי ומלא בוויטמינים לתחילת היום.</p>
+                            <div class="recipe-meta">
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>5 דקות</span>
+                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>2 מנות</span>
+                            </div>
+                            <button class="btn btn-outline btn-block recipe-cta" type="button" aria-label="למתכון המלא: סמוזי ירוק מרענן">למתכון המלא</button>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="cta-band reveal">
+                    <div>
+                        <h2>רוצים תפריט שנבנה סביבך?</h2>
+                        <p>המתכונים כאן הם נקודת התחלה. בליווי אישי בונים יחד תפריט שמתאים לטעם, לשגרה ולמטרות שלך.</p>
                     </div>
-                </article>
+                    <a href="index.html#contact" class="btn btn-primary btn-lg">לשיחת היכרות</a>
+                </div>
             </div>
+        </section>
+    </main>
 
-            <!-- Call to Action -->
-            <div class="recipes-cta">
-                <h2>רוצים ליווי תזונתי מקצועי?</h2>
-                <p>אשמח ללוות אתכם בבניית תפריט אישי המותאם לצרכים שלכם</p>
-                <a href="index.html#contact" class="cta-button">צרו קשר</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recipe Modal -->
-    <div id="recipe-modal" class="recipe-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="recipe-modal-overlay"></div>
-        <div class="recipe-modal-content">
-            <button class="recipe-modal-close" aria-label="סגור">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+    <!-- מודאל מתכון -->
+    <div id="recipe-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog">
+            <button class="modal-close" type="button" aria-label="סגירת המתכון">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
             </button>
-            <div class="recipe-modal-body" id="modal-body">
-                <!-- תוכן המתכון ייטען כאן דינמית -->
-            </div>
+            <div class="modal-body" id="modal-body"></div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>ויקי - תזונאית קלינית</h3>
-                    <p>ליווי תזונתי אישי ומקצועי</p>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="ויקטוריה גרמן – דיאטנית קלינית" width="249" height="168" class="footer-brand-logo" loading="lazy">
+                    <p>ליווי תזונתי אישי ומקצועי, בקצב שמתאים לך. מפגשים בזום או בקליניקה.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/nourish.viktoria/" target="_blank" rel="noopener noreferrer" aria-label="אינסטגרם">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
+                        </a>
+                        <a href="https://wa.me/972542141321" target="_blank" rel="noopener noreferrer" aria-label="וואטסאפ">
+                            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/><path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>קישורים</h3>
+                <nav class="footer-links" aria-label="קישורים">
+                    <h3>ניווט</h3>
                     <ul>
                         <li><a href="index.html">דף הבית</a></li>
-                        <li><a href="index.html#about">אודות</a></li>
+                        <li><a href="index.html#about">היכרות</a></li>
                         <li><a href="index.html#services">שירותים</a></li>
+                        <li><a href="index.html#process">איך זה עובד</a></li>
                         <li><a href="recipes.html">מתכונים</a></li>
                         <li><a href="blog.html">בלוג נושם</a></li>
-                        <li><a href="accessibility-statement.html">הצהרת נגישות</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
+                </nav>
+                <div class="footer-contact">
                     <h3>יצירת קשר</h3>
-                    <p>טלפון: <a href="tel:+972542141321" dir="ltr">054-214-1321</a></p>
-                    <p>אימייל: <a href="mailto:nourish.viktoria@gmail.com">Nourish.viktoria@gmail.com</a></p>
+                    <ul>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+972542141321" dir="ltr">054-214-1321</a></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg><a href="mailto:nourish.viktoria@gmail.com" dir="ltr">nourish.viktoria@gmail.com</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 ויקי - תזונאית קלינית. כל הזכויות שמורות.</p>
+                <p>&copy; 2026 ויקטוריה גרמן – דיאטנית קלינית. כל הזכויות שמורות.</p>
+                <a href="accessibility-statement.html">הצהרת נגישות</a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <div class="float-stack">
+        <a href="https://wa.me/972542141321?text=%D7%94%D7%99%D7%99%20%D7%95%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%D7%9D"
+           class="float-btn float-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="שליחת הודעה בוואטסאפ">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.824.738 5.482 2.028 7.784L.067 31.848l8.292-2.176A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333c-2.444 0-4.768-.662-6.756-1.812l-.484-.288-5.024 1.32 1.34-4.896-.316-.5A13.242 13.242 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/><path d="M23.348 19.472c-.388-.196-2.3-1.136-2.656-1.264-.356-.132-.616-.196-.876.196-.26.388-1.008 1.264-1.236 1.524-.228.26-.456.292-.844.096-.388-.196-1.64-.604-3.124-1.928-1.156-1.032-1.936-2.308-2.164-2.696-.228-.388-.024-.6.172-.792.176-.176.388-.456.584-.684.196-.228.26-.388.388-.648.132-.26.068-.488-.032-.684-.1-.196-.876-2.112-1.2-2.892-.316-.76-.636-.656-.876-.668-.228-.012-.488-.012-.748-.012s-.684.096-1.04.488c-.356.388-1.36 1.328-1.36 3.244s1.392 3.764 1.588 4.024c.196.26 2.748 4.196 6.656 5.884.932.404 1.66.644 2.228.824.936.296 1.788.256 2.46.156.752-.112 2.3-.94 2.624-1.848.324-.908.324-1.688.228-1.848-.096-.16-.356-.26-.744-.456z"/></svg>
+        </a>
+        <a href="tel:+972542141321" class="float-btn float-phone" aria-label="התקשרו אלינו">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+    </div>
+
+    <div class="a11y" id="a11y">
+        <button class="a11y-toggle" id="a11y-toggle" type="button" aria-expanded="false" aria-controls="a11y-panel" aria-label="תפריט נגישות">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="7.5" r="1.25" fill="currentColor"/><path d="M7.5 10.5h9M12 10.5v4.5M9.5 18.5l2.5-3.5 2.5 3.5"/></svg>
+            <span>נגישות</span>
+        </button>
+        <div class="a11y-panel" id="a11y-panel" role="group" aria-label="אפשרויות נגישות">
+            <h2>אפשרויות נגישות</h2>
+            <button class="a11y-btn" type="button" data-action="increase-font"><span class="icon" aria-hidden="true">A+</span><span>הגדלת טקסט</span></button>
+            <button class="a11y-btn" type="button" data-action="decrease-font"><span class="icon" aria-hidden="true">A-</span><span>הקטנת טקסט</span></button>
+            <button class="a11y-btn" type="button" data-action="high-contrast" aria-pressed="false"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></span><span>ניגודיות גבוהה</span></button>
+            <button class="a11y-btn" type="button" data-action="underline-links" aria-pressed="false"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 4v6a6 6 0 0 0 12 0V4M4 20h16"/></svg></span><span>הדגשת קישורים</span></button>
+            <button class="a11y-btn" type="button" data-action="reset"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><span>איפוס הגדרות</span></button>
+            <a href="accessibility-statement.html" class="a11y-link">הצהרת נגישות</a>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
 </body>
 </html>

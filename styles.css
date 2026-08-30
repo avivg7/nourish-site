@@ -1230,6 +1230,244 @@ body.high-contrast .navbar {
 }
 
 /* ===============================================
+   Blog Page Styling
+   =============================================== */
+.blog-section {
+    padding: 80px 0;
+    background-color: var(--background-white);
+}
+
+.blog-intro {
+    text-align: center;
+    font-size: calc(1.1rem * var(--font-size-scale));
+    color: var(--text-light);
+    max-width: 800px;
+    margin: 0 auto 60px;
+    line-height: 1.8;
+}
+
+/* Instagram Grid */
+.instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+/* Instagram Post Card */
+.instagram-post {
+    background: var(--background-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.instagram-post:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px var(--shadow-medium);
+}
+
+.instagram-post-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.instagram-post-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.instagram-post-caption {
+    color: var(--text-dark);
+    font-size: calc(1rem * var(--font-size-scale));
+    line-height: 1.7;
+    margin-bottom: 16px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.instagram-post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--background-light);
+    font-size: calc(0.9rem * var(--font-size-scale));
+    color: var(--text-light);
+}
+
+.instagram-post-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.instagram-post-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.instagram-post-link:hover {
+    color: var(--text-dark);
+    gap: 10px;
+}
+
+.instagram-post-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Loading State */
+.instagram-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--background-light);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.instagram-loading p {
+    color: var(--text-light);
+    font-size: calc(1rem * var(--font-size-scale));
+}
+
+/* Error State */
+.instagram-error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--background-light);
+    border-radius: 16px;
+}
+
+.instagram-error svg {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.instagram-error h3 {
+    color: var(--text-dark);
+    font-size: calc(1.5rem * var(--font-size-scale));
+    margin-bottom: 12px;
+}
+
+.instagram-error p {
+    color: var(--text-light);
+    font-size: calc(1rem * var(--font-size-scale));
+    margin-bottom: 30px;
+}
+
+.instagram-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.instagram-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.instagram-link-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Blog CTA */
+.blog-cta {
+    text-align: center;
+    padding: 60px 30px;
+    background: linear-gradient(135deg, var(--background-light), var(--secondary-color));
+    border-radius: 16px;
+    margin-top: 40px;
+}
+
+.blog-cta h2 {
+    color: var(--text-dark);
+    font-size: calc(2rem * var(--font-size-scale));
+    margin-bottom: 16px;
+}
+
+.blog-cta p {
+    color: var(--text-light);
+    font-size: calc(1.1rem * var(--font-size-scale));
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.instagram-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    border-radius: 10px;
+    font-size: calc(1.1rem * var(--font-size-scale));
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.instagram-cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.instagram-cta-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive Blog */
+@media (max-width: 768px) {
+    .instagram-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .blog-cta h2 {
+        font-size: calc(1.6rem * var(--font-size-scale));
+    }
+}
+
+/* ===============================================
    אנימציות
    =============================================== */
 @keyframes fadeInUp {

@@ -548,7 +548,7 @@ p  { text-wrap: pretty; }
     font-size: 0.9rem;
 }
 .footer-bottom p, .footer-bottom a { color: #C9D3C6; }
-.footer-bottom a { display: inline-block; padding-block: 0.55rem; }
+.footer-bottom a { display: inline-block; padding-block: 0.65rem; }
 
 /* ---------- כפתורים צפים ---------- */
 .float-stack {

@@ -382,48 +382,33 @@ p  { text-wrap: pretty; }
     color: var(--beet-deep);
 }
 
-/* ---------- שירותים ---------- */
-.services-grid {
+/* ---------- שירותים (רשימה, בלי כרטיסים) ---------- */
+.services-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 0 3.5rem;
+    border-bottom: 1px solid rgba(42, 31, 29, 0.16);
 }
-.service-card {
-    background: var(--paper);
-    border-radius: var(--radius);
-    padding: 1.75rem 1.5rem;
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    overflow: hidden;
-    transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+.service {
+    padding: 1.75rem 0 1.9rem;
+    border-top: 1px solid rgba(42, 31, 29, 0.16);
 }
-.service-card::before {
-    content: '';
-    position: absolute;
-    inset-inline-start: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--beet);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform var(--dur) var(--ease-out);
+.service-head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.6rem;
 }
-.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.service-card:hover::before { transform: scaleY(1); }
 .service-icon {
-    width: 52px; height: 52px;
-    border-radius: 14px;
-    background: var(--beet-tint);
+    width: 40px; height: 40px;
     color: var(--beet-deep);
     display: grid;
     place-items: center;
-    margin-bottom: 1.1rem;
+    flex: none;
 }
 .service-icon svg { width: 26px; height: 26px; }
-.service-card h3 { margin-bottom: 0.5rem; }
-.service-card p { color: var(--ink-soft); font-size: 1rem; }
+.service h3 { margin: 0; }
+.service p { color: var(--ink-soft); font-size: 1rem; max-width: 46ch; }
 
 /* ---------- איך זה עובד ---------- */
 .steps {
@@ -978,7 +963,6 @@ body.high-contrast {
     --whatsapp-hover: #00332A;
     --shadow-sm: none; --shadow-md: none; --shadow-lg: 0 0 0 2px #000;
 }
-body.high-contrast .service-card,
 body.high-contrast .recipe-card,
 body.high-contrast .credentials li,
 body.high-contrast .contact-card,
@@ -1008,7 +992,6 @@ body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: 
 
 /* ---------- רספונסיב ---------- */
 @media (min-width: 1024px) {
-    .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
     .step { padding-inline-start: 0; padding-top: 4rem; }
     .step-num { top: 0; inset-inline-start: 0; }
@@ -1067,7 +1050,7 @@ body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: 
     .hero { padding-top: 2rem; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .hero-actions .btn { width: 100%; }
-    .services-grid { grid-template-columns: 1fr; }
+    .services-list { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     .float-phone { display: grid; }
     .a11y-toggle span { display: none; }

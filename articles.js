@@ -3,7 +3,8 @@
    --------------------------------------------------------------------------
    איך מוסיפים כתבה: מוסיפים רשומה לרשימה ARTICLES (החדשה ראשונה) ושומרים.
    שדות: title (חובה), url (חובה), outlet – שם האתר/המגזין, date – שנה או
-   תאריך כטקסט, excerpt – משפט קצר על הכתבה. outlet/date/excerpt אופציונליים.
+   תאריך כטקסט, excerpt – משפט קצר על הכתבה, image – נתיב לתמונה מייצגת
+   (מומלץ 800x450, לשמור תחת images/articles/). הכל חוץ מ-title/url אופציונלי.
 
    דוגמה:
    { title: 'איך מפסיקים לאכול רגשית?', outlet: 'ישראל היום', date: '2026',
@@ -11,7 +12,30 @@
    ========================================================================== */
 
 const ARTICLES = [
-    // { title: '', outlet: '', date: '', url: '', excerpt: '' },
+    {
+        title: 'תזונה בקיץ: האם החום מפחית תיאבון ואיך נמנעים מנשנושים',
+        outlet: 'מקור ראשון',
+        date: 'אוגוסט 2026',
+        url: 'https://www.makorrishon.co.il/lifestyle/diet/article/362899',
+        image: 'images/articles/makor-rishon-summer.jpg',
+        excerpt: 'החום מוריד את החשק לארוחות כבדות, אבל התיאבון לא באמת נעלם – הוא רק עובר לאייס קפה, לגלידות ולנשנושי ערב. בכתבה אני מסבירה מה קורה להרגלי האכילה שלנו בקיץ, ומה כדאי לעשות אחרת.'
+    },
+    {
+        title: 'אבטיח ומלון בקיץ: כמה מותר לאכול ואיך משלבים נכון?',
+        outlet: 'חדשות ירושלים JNEWS',
+        date: 'יולי 2026',
+        url: 'https://jerusalemnews.co.il/watermelon-and-melon-summer-health-nutrition-guide/',
+        image: 'images/articles/jnews-watermelon.jpg',
+        excerpt: 'הפירות של הקיץ הם הרבה יותר ממים וסוכר. כמה באמת מומלץ לאכול ביום, למה השילוב עם גבינה בולגרית דווקא עובד – וטיפ בטיחות אחד חשוב לפני שחותכים את האבטיח.'
+    },
+    {
+        title: 'ותודה למדע: דירוג 12 המאכלים הבריאים בעולם',
+        outlet: 'ynet',
+        date: '2026',
+        url: 'https://p.ynet.co.il/goodfood#box-APgVVEnJE',
+        image: 'images/articles/ynet-healthy-foods.jpg',
+        excerpt: 'מה באמת מגיע לתואר "המאכל הבריא בעולם"? דירוג אינטראקטיבי של 12 מזונות שהמחקר מאשר – מעדשים ושמן זית ועד אוכמניות וסלמון – ולמה כדאי שכולם יבקרו אצלכם בצלחת.'
+    },
 ];
 
 (function () {
@@ -39,10 +63,13 @@ const ARTICLES = [
 
     feed.innerHTML = items.map((a) => `
         <a class="article-card reveal" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">
-            ${a.outlet || a.date ? `<span class="article-meta">${a.outlet ? `<span class="article-outlet">${esc(a.outlet)}</span>` : ''}${a.date ? `<span class="article-date">${esc(a.date)}</span>` : ''}</span>` : ''}
-            <h2>${esc(a.title)}</h2>
-            ${a.excerpt ? `<p class="article-excerpt">${esc(a.excerpt)}</p>` : ''}
-            <span class="article-more">לקריאת הכתבה ${ARROW}</span>
+            ${a.image ? `<img class="article-thumb" src="${esc(a.image)}" alt="" loading="lazy" width="800" height="450">` : ''}
+            <div class="article-body">
+                ${a.outlet || a.date ? `<span class="article-meta">${a.outlet ? `<span class="article-outlet">${esc(a.outlet)}</span>` : ''}${a.date ? `<span class="article-date">${esc(a.date)}</span>` : ''}</span>` : ''}
+                <h2>${esc(a.title)}</h2>
+                ${a.excerpt ? `<p class="article-excerpt">${esc(a.excerpt)}</p>` : ''}
+                <span class="article-more">לקריאת הכתבה ${ARROW}</span>
+            </div>
         </a>`).join('');
 
     // חשיפה בגלילה לכרטיסים שנוצרו אחרי שהסקריפט הראשי כבר רץ

@@ -509,7 +509,7 @@ p  { text-wrap: pretty; }
 }
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-columns: 1.2fr 0.7fr 0.95fr 1.15fr;
     gap: 2.5rem;
     margin-bottom: 2.5rem;
 }
@@ -1162,6 +1162,84 @@ p  { text-wrap: pretty; }
 /* ---------- כפתורים מגנטיים / הטיה ---------- */
 .magnetic { will-change: transform; }
 .tilt { transform-style: preserve-3d; will-change: transform; }
+
+/* ---------- פוטר: הקליניקה + מפה ---------- */
+.footer-clinic p { margin-bottom: 0.75rem; }
+.map-embed {
+    display: block;
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.map-embed iframe {
+    display: block;
+    width: 100%;
+    height: 150px;
+    border: 0;
+    pointer-events: none;
+    filter: grayscale(1) contrast(0.95);
+    opacity: 0.85;
+    transition: filter 300ms var(--ease-out), opacity 300ms var(--ease-out);
+}
+.map-embed:hover iframe, .map-embed:focus-visible iframe { filter: none; opacity: 1; }
+.map-tag {
+    position: absolute;
+    bottom: 0.5rem;
+    inset-inline-start: 0.5rem;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.15rem 0.65rem;
+    border-radius: 999px;
+    pointer-events: none;
+}
+.map-links { display: flex; gap: 1rem; margin-top: 0.6rem; font-size: 0.9rem; }
+.map-links a { display: inline-block; padding-block: 0.35rem; }
+body.high-contrast .map-embed iframe { filter: none; opacity: 1; }
+
+/* ---------- כתבות ופרסומים ---------- */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+}
+.article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--beet); color: var(--ink); }
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: 0.85rem;
+}
+.article-outlet { font-weight: 700; color: var(--beet-deep); }
+.article-date { color: var(--sage-deep); font-variant-numeric: tabular-nums; }
+.article-card h2 { font-size: 1.25rem; line-height: 1.35; }
+.article-excerpt { color: var(--ink-soft); font-size: 0.98rem; flex: 1; }
+.article-more { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; color: var(--beet-deep); }
+.article-more svg { width: 18px; height: 18px; transition: transform var(--dur) var(--ease-out); }
+.article-card:hover .article-more svg { transform: translateX(-4px); }
+body.high-contrast .article-card { border: 2px solid #000; }
+
+/* תפריט עליון צפוף במסכים בינוניים */
+@media (min-width: 1024px) and (max-width: 1220px) {
+    .site-nav { gap: 1rem; }
+    .nav-list a { padding: 0.5rem 0.55rem; font-size: 0.95rem; }
+}
 
 /* ---------- אנימציית חשיפה ---------- */
 .js .reveal {

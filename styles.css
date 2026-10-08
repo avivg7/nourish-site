@@ -251,6 +251,7 @@ p  { text-wrap: pretty; }
     font-weight: 500;
     color: var(--ink);
     text-decoration: none;
+    white-space: nowrap;
     transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
 }
 .nav-list a:hover { background: var(--sage-tint); color: var(--ink); }
@@ -1247,10 +1248,16 @@ body.high-contrast .map-embed iframe { filter: none; opacity: 1; }
 .article-card:hover .article-more svg { transform: translateX(-4px); }
 body.high-contrast .article-card { border: 2px solid #000; }
 
+/* כניסה למטופלים – משני ל"לקביעת שיחה" */
+.nav-login { min-height: 44px; padding: 0.55rem 1.1rem; font-size: 0.95rem; font-weight: 500; gap: 0.45rem; }
+.nav-login svg { width: 1.1em; height: 1.1em; }
+.site-nav .nav-login { margin-inline-start: -1rem; }
+
 /* תפריט עליון צפוף במסכים בינוניים */
 @media (min-width: 1024px) and (max-width: 1220px) {
     .site-nav { gap: 1rem; }
     .nav-list a { padding: 0.5rem 0.55rem; font-size: 0.95rem; }
+    .site-nav .nav-login { margin-inline-start: 0; padding: 0.5rem 0.8rem; }
 }
 
 /* ---------- אנימציית חשיפה ---------- */
@@ -1362,6 +1369,8 @@ body.high-contrast .site-footer p, body.high-contrast .footer-bottom a { color: 
     .nav-list { flex-direction: column; align-items: stretch; gap: 0.25rem; margin: 0; }
     .nav-list a { display: block; padding: 0.85rem 1rem; font-size: 1.1rem; border-radius: var(--radius-sm); }
     .nav-cta { width: 100%; }
+    .site-nav .nav-login { width: 100%; min-height: 48px; margin-inline-start: 0; font-size: 1rem; }
+    .site-nav { max-height: calc(100dvh - var(--header-h)); overflow-y: auto; overscroll-behavior: contain; }
     body.nav-open { overflow: hidden; }
     body.nav-open .float-stack, body.nav-open .a11y { visibility: hidden; }
 
